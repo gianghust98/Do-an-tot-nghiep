@@ -56,4 +56,8 @@ public class NguoiDungService {
 	public void deleteById(long id) {
 		nguoiDungRepo.deleteById(id);
 	}
+
+	public NguoiDung findByUsername(String username) {
+		return nguoiDungRepo.findByhoTen(username);
+	}
 }

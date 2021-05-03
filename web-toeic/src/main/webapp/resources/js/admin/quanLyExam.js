@@ -245,9 +245,6 @@ $(document).ready(function() {
 			});
 		
 	}
-	
-
-	
 	//default. load all object baithithu
 	window.onload = function () {
 		loadAllBaiThiThu();

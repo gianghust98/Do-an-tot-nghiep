@@ -9,6 +9,7 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webtoeic.jpautil.VaiTroTypeConverter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class NguoiDung {
@@ -27,6 +28,15 @@ public class NguoiDung {
 	private String hoTen;
 	private String soDienThoai;
 	private String diaChi;
+	private String multipartFile;
+
+	public String getMultipartFile() {
+		return multipartFile;
+	}
+
+	public void setMultipartFile(String multipartFile) {
+		this.multipartFile = multipartFile;
+	}
 
 	@Transient
 	private boolean loginOauth2;

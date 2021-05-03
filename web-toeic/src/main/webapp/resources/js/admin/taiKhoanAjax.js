@@ -69,6 +69,8 @@ $(document).ready(function() {
         ajaxPostTaiKhoan();
         resetData();
     });
+
+	// ad image register
     
     function ajaxPostTaiKhoan() {    	
     	var data = JSON.stringify($('.taiKhoanForm').serializeJSON());
