@@ -4,6 +4,31 @@ $(document).ready(function() {
 		$(this).tab('show');
 	})
 
+	// add image
+	$(document).on('click', '#btnAddNewImage', function (event) {
+		var formData = new FormData();
+		var file_image = $('#file_Image')[0].files[0];
+		formData.append("file_image", file_image);
+
+		$.ajax({
+			data: formData,
+			type: 'POST',
+			url : "http://localhost:8081/webtoeic/register/save-image",
+			enctype: 'multipart/form-data',
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function (data) {
+				$('#info-success').text("Thêm mới anh thành công");
+			},
+			error: function (e) {
+				alert("error");
+				console.log("ERROR: ", e);
+			}
+
+		});
+	});
+
 	$(document).on('click', '#btnXacNhanDoiMK', function(event) {
 		event.preventDefault();
 		removeElementsByClass("error");

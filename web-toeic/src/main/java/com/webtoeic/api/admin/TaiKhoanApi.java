@@ -1,5 +1,8 @@
 package com.webtoeic.api.admin;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -7,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +33,14 @@ import com.webtoeic.dto.TaiKhoanDto;
 import com.webtoeic.entities.NguoiDung;
 import com.webtoeic.entities.VaiTro;
 import com.webtoeic.service.NguoiDungService;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/admin/tai-khoan")
 public class TaiKhoanApi {
+
+	@Autowired
+	private HttpServletRequest request;
 
 	@Autowired
 	private NguoiDungService nguoiDungService;
@@ -46,7 +54,8 @@ public class TaiKhoanApi {
 	}
 
 	@PostMapping("/save")
-	public ResponseObject saveTaiKhoan(@RequestBody @Valid TaiKhoanDto dto, BindingResult result, Model model) {
+	public ResponseObject saveTaiKhoan(@RequestBody @Valid TaiKhoanDto dto, BindingResult result, Model model,
+									   @RequestParam("file_image") MultipartFile file_image) {
 		ResponseObject ro = new ResponseObject();
 
 		if (nguoiDungService.findByEmail(dto.getEmail()) != null) {

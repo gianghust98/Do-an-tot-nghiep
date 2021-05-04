@@ -15,6 +15,7 @@
 		<ul class="nav nav-tabs" id="tabs">
 			<li class="active"><a href="#information">Cập nhật thông tin</a></li>
 			<li><a href="#changePass">Đổi mật khẩu</a></li>
+			<li><a href="#changeImage">Upload Image File</a></li>
 		</ul>
 
 		<div>
@@ -87,6 +88,24 @@
 							value="Xác nhận" />
 					</form>
 				</div>
+				<div class="tab-pane" id="changeImage">
+					<form class="changeImage">
+						<div class="form-group">
+							<input style="display:none" class="form-control-plaintext"  value="${user.id }" type="text" id="idExam" name="idExam">
+						</div>
+						<div class="form-group">
+							<label for="staticEmail" style="font-weight: bold"
+								   class="col-sm-2 col-form-label">Upload Image File</label>
+							<div class="col-sm-10">
+								<input type="file" path="multipartFile" id="file_Image"
+									   class="form-control"  accept="image/*">
+							</div>
+						</div>
+						<button type="button" id="btnAddNewImage" class="btn btn-primary">up load</button>
+					</form>
+				</div>
+<%--				ad image--%>
+
 			</div>
 		</div>
 	</div>
