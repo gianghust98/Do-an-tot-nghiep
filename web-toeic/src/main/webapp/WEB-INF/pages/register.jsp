@@ -7,7 +7,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Laptop Shop - Đăng ký</title>
+<title>Đăng ký</title>
 <link rel="stylesheet" href="<c:url value='/css/login.css' />">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -15,12 +15,13 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script
+			src="${pageContext.request.contextPath}/resources/js/jquery-1.js"></script>
+	<script src="<c:url value='/js/admin/taiKhoanAjax.js'/>"></script>
 
 </head>
 
 <body>
-
-
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	<div class="login-page">
 		<div class="form">
@@ -66,9 +67,17 @@
 				</div>
 				<input id="submit" type="submit" value="ĐĂNG KÝ">
 				<p class="message" style="font-size: 18; padding-top: 10px"> Đã có tài khoản? <a
-						href="<c:url value='/login'/> ">Đăng nhập</a></p>
+						href="<c:url value='/signin'/> ">Đăng nhập</a></p>
 			</form:form>
+
 		</div>
+<%--		<div class="form">--%>
+<%--			<div class="form-group">--%>
+<%--				<input type="file" path="multipartFile" id="file_Image"--%>
+<%--					   class="form-control"  accept="image/*">--%>
+<%--			</div>--%>
+<%--			<button type="button" id="btnAddNewImage" class="btn btn-primary">Xác nhận</button>--%>
+<%--		</div>--%>
 	</div>
 	<script
 		src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

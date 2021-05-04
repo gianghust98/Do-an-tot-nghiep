@@ -25,6 +25,11 @@ $(document).ready(function(){
 		removeElementsByClass("error");
 		$('.formDoiMatKhau #doiMKModal').modal();
 	});
+	$('.btnupload').on("click", function(event) {
+		event.preventDefault();
+		removeElementsByClass("error");
+		$('.formUpload #upload').modal();
+	});
 	
 	$(document).on('click', '#btnXacNhanDoiMK', function(event) {
 		event.preventDefault();

@@ -4,7 +4,7 @@
       <div class="row">
       
       
-        <div class="span6" align="center">Copyright &copy; SoICT-HUST 2018-2019 | All Rights Reserved<br>
+        <div class="span6" align="center">SET - HUST 2020 - 2021<br>
         <small>HA NOI UNIVERSITY OF SCIENCE AND TECHNOLOGY</small>
         </div>
       
