@@ -34,6 +34,9 @@ public class NguoiDungService {
 		nd.setPassword(bCryptPasswordEncoder.encode(nd.getPassword()));
 		return nguoiDungRepo.save(nd);
 	}
+	public NguoiDung saveUserAfterUploadImage(NguoiDung nd) {
+		return nguoiDungRepo.save(nd);
+	}
 
 	public NguoiDung findById(long id) {
 		NguoiDung nd = nguoiDungRepo.findById(id).get();
