@@ -13,14 +13,13 @@ $(document).ready(function() {
 		$.ajax({
 			data: formData,
 			type: 'POST',
-			url : "http://localhost:8080/webtoeic/register/save-image",
+			url : "http://localhost:8081/webtoeic/register/save-image",
 			enctype: 'multipart/form-data',
 			contentType: false,
 			cache: false,
 			processData: false,
 			success: function (data) {
 				$('#info-success').text("Thêm mới anh thành công");
-                alert("Thêm mới anh thành công");
 			},
 			error: function (e) {
 				alert("error");

@@ -1,5 +1,7 @@
 package com.webtoeic.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,9 +24,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.webtoeic.entities.NguoiDung;
+import com.webtoeic.grpc.TransferStudentInfoClient;
 import com.webtoeic.service.BaiTapTuVungService;
 import com.webtoeic.service.NguoiDungService;
 import com.webtoeic.service.SlideBannerService;
@@ -38,6 +44,10 @@ public class ClientController {
 
 	@Autowired
 	private NguoiDungService nguoiDungService;
+	
+	@Autowired
+	private TransferStudentInfoClient transferClient ;
+	
 
 	@ModelAttribute("loggedInUser")
 	public NguoiDung loggedInUser() {
@@ -94,6 +104,14 @@ public class ClientController {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		return "redirect:/login?logout";
+	}
+	@PostMapping("/takePicture/beforeTest")
+	public String beforeTest(@RequestParam("canvasImage") MultipartFile file) throws IOException {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
+//		System.out.println(transferClient.ImgRegister(nguoiDung.getId(),file.getBytes()));
+		FileUtils.writeByteArrayToFile(new File("pathname.jpg"), file.getBytes());
+		return "redirect:/listExam";
 	}
 
 }

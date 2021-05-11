@@ -94,7 +94,7 @@
 							<input style="display:none" class="form-control-plaintext"  value="${user.id }" type="text" id="idExam" name="idExam">
 						</div>
 						<div class="form-group">
-							<label  style="font-weight: bold"
+							<label for="staticEmail" style="font-weight: bold"
 								   class="col-sm-2 col-form-label">Upload Image File</label>
 							<div class="col-sm-10">
 								<input type="file" path="multipartFile" id="file_Image"
