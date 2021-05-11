@@ -97,7 +97,7 @@
 											console.log('file',fd);
 											
 											$.ajax({
-												  url: 'http://localhost:8080/webtoeic/takePicture/beforeTest',
+												  url: 'http://localhost:8081/webtoeic/takePicture/beforeTest',
 												  type: 'POST',
 												  processData: false, 
 												  contentType: false, 
@@ -282,7 +282,9 @@
 			</div>
 			 <div id="camera" style="height:auto;width:auto; text-align:left;"></div>
 			<input type="button" value="Take a Snap and Download Picture" id="btPic" onclick="takeSnapShot()" />
-
+			 <c:if test="${message == 'true'}">
+				<button type="button" >Take Exam</button>
+			</c:if>
 		</div>
 	</div>
 

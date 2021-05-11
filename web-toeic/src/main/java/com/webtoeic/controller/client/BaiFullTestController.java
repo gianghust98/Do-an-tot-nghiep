@@ -1,5 +1,7 @@
 package com.webtoeic.controller.client;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -7,23 +9,28 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.webtoeic.entities.BaiThiThu;
 import com.webtoeic.entities.CauHoiBaiThiThu;
 import com.webtoeic.entities.KetQuaBaiTest;
 import com.webtoeic.entities.NguoiDung;
+import com.webtoeic.grpc.TransferStudentInfoClient;
 import com.webtoeic.service.BaiThiThuService;
 import com.webtoeic.service.CauHoiBaiThiThuService;
 import com.webtoeic.service.KetQuaBaiTestService;
@@ -43,18 +50,23 @@ public class BaiFullTestController {
 	@Autowired
 	private NguoiDungService nguoiDungService;
 	
+	@Autowired
+	private TransferStudentInfoClient transferClient ;
+	
+	public String authUser;
 	@ModelAttribute("loggedInUser")
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		return (NguoiDung) request.getSession().getAttribute("loggedInUser");
 	}
 	
 	@GetMapping("/listExam")
-	public String getListExam(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String getListExam(@RequestParam( defaultValue = "1") int page, Model model) {
 	
 		// default value lấy từ kết quả đầu tiên
 		
 		try {
-		
+				model.addAttribute("message", authUser);
+				System.out.println("testingggg"+ authUser);
 				Page<BaiThiThu> list = baithithuService.getBaiThiThu(page-1, 4);
 				
 				int totalPage = list.getTotalPages();
@@ -100,7 +112,15 @@ public class BaiFullTestController {
 			return "client/error";
 		}
 	}
-	
+	@PostMapping("/takePicture/beforeTest")
+	public String beforeTest(ModelMap model,@RequestParam("canvasImage") MultipartFile file) throws IOException {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
+		authUser = "true";
+//		System.out.println(transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes()));
+		FileUtils.writeByteArrayToFile(new File("pathname.jpg"), file.getBytes());
+		return "redirect:/listExam";
+	}
 	@GetMapping("/doExam")
 	public String DetailListening(Model model,@RequestParam("idExam") int id) {
 		

@@ -27,9 +27,9 @@ public class TransferStudentInfoClient {
 			  return imgReply.getMessage();
 			  
 		  }
-	    public String imgAuth(String email,String password, byte[] photo) {
+	    public String imgAuth(String email, byte[] photo) {
 			  ByteString bString = ByteString.copyFrom(photo);
-			  ImgAuthRequest request = ImgAuthRequest.newBuilder().setEmail(email).setPassword(password).setPhoto(bString).build();  			  
+			  ImgAuthRequest request = ImgAuthRequest.newBuilder().setEmail(email).setPhoto(bString).build();  			  
 			  ImgReply imgReply = null;
 			  imgReply = greetStub.imgAuth(request);
 			  return imgReply.getMessage();

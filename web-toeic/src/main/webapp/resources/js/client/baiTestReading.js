@@ -103,7 +103,7 @@ function clickSubmitReading(){
 //	console.log("listen="+correctListening);
 //	console.log("id="+examId);
 	
-	var url="http://localhost:8080/webtoeic/saveResultUser/"+examId+"/"+correctListening+"/"+correctReading;
+	var url="http://localhost:8081/webtoeic/saveResultUser/"+examId+"/"+correctListening+"/"+correctReading;
 	
 	if(window.XMLHttpRequest){
 		xhttp = new XMLHttpRequest();
@@ -165,7 +165,7 @@ function clickResutlReading(){
 	var examId = document.getElementById('id_bai_exam').value;
 	//var examId = $("#id_bai_exam").val();
 	
-	var url="http://localhost:8080/webtoeic/showResultReading/"+examId+"/"+countCorrect;
+	var url="http://localhost:8081/webtoeic/showResultReading/"+examId+"/"+countCorrect;
 	if(window.XMLHttpRequest){
 		xhttp = new XMLHttpRequest();
 	}
