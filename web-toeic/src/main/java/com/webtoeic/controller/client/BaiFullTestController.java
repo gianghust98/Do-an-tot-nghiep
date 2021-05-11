@@ -116,8 +116,9 @@ public class BaiFullTestController {
 	public String beforeTest(ModelMap model,@RequestParam("canvasImage") MultipartFile file) throws IOException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
-		authUser = "true";
-//		System.out.println(transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes()));
+		
+		System.out.println(transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes()));
+		authUser = transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes());
 		FileUtils.writeByteArrayToFile(new File("pathname.jpg"), file.getBytes());
 		return "redirect:/listExam";
 	}

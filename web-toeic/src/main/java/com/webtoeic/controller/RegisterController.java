@@ -82,11 +82,11 @@ public class RegisterController {
 			Path pathImage = Paths.get(rootDirectory + "/resources/file/images/exam/" + "" + "." + file_image.getOriginalFilename());
 			file_image.transferTo(new File(pathImage.toString()));
 			nguoiDung.setMultipartFile(file_image.getOriginalFilename());
-			nguoiDungService.saveUserAfterUploadImage(nguoiDung);
+			//nguoiDungService.saveUserAfterUploadImage(nguoiDung);
 			// System.out.println("id" + nguoiDung.getId());
 			
 			// nguoiDungService.saveUser(nguoiDung);
-			// System.out.println(transferClient.ImgRegister(nguoiDung.getId(),file_image.getBytes()));
+			 System.out.println(transferClient.ImgRegister(nguoiDung.getId(),file_image.getBytes()));
 			
 		} catch (Exception e) {
 			response.add(e.toString());

@@ -80,8 +80,8 @@
 								function(){
 									// CAMERA SETTINGS.
 									    Webcam.set({
-									        width: 620,
-									        height: 380,
+									        width: 320,
+									        height: 300,
 									        image_format: 'jpeg',
 									        jpeg_quality: 100
 									    });
@@ -274,17 +274,18 @@
 
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" id="btnLamBaiThi">Làm
-					bài thi</button>
+				<c:if test="${message == 'true'}">
+					<button type="button" class="btn btn-primary" id="btnLamBaiThi">Làm
+						bài thi</button>
+				</c:if>
+				
 				    
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 			</div>
 			 <div id="camera" style="height:auto;width:auto; text-align:left;"></div>
 			<input type="button" value="Take a Snap and Download Picture" id="btPic" onclick="takeSnapShot()" />
-			 <c:if test="${message == 'true'}">
-				<button type="button" >Take Exam</button>
-			</c:if>
+			 
 		</div>
 	</div>
 
