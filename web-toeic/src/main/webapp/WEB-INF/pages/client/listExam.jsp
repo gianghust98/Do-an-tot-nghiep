@@ -18,7 +18,7 @@
 	src="${pageContext.request.contextPath}/resources/js/html5shiv.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery-1.js"></script>
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
 <style type="text/css">
 .hidden {
 	display: none;
@@ -75,6 +75,68 @@
 													+ examId;
 
 										});
+						$('#btPic')
+							.click(
+								function(){
+									// CAMERA SETTINGS.
+									    Webcam.set({
+									        width: 620,
+									        height: 380,
+									        image_format: 'jpeg',
+									        jpeg_quality: 100
+									    });
+									    Webcam.attach('#camera');
+							 
+								    takeSnapShot = function () {
+								        Webcam.snap(function (data_uri) {
+								        
+											var blob = dataURItoBlob(data_uri);
+											console.log('blob',blob);
+											var fd = new FormData(document.forms[0]);
+											fd.append("canvasImage", blob);
+											console.log('file',fd);
+											
+											$.ajax({
+												  url: 'http://localhost:8080/webtoeic/takePicture/beforeTest',
+												  type: 'POST',
+												  processData: false, 
+												  contentType: false, 
+												  dataType : 'json',
+												  data: fd
+												});
+																			        
+									        });
+								    }
+								    //CONVERT dataURI
+								    function dataURItoBlob(dataURI) {
+									    // convert base64/URLEncoded data component to raw binary data held in a string
+									    var byteString;
+									    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+									        byteString = atob(dataURI.split(',')[1]);
+									    else
+									        byteString = unescape(dataURI.split(',')[1]);
+									
+									    // separate out the mime component
+									    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+									
+									    // write the bytes of the string to a typed array
+									    var ia = new Uint8Array(byteString.length);
+									    for (var i = 0; i < byteString.length; i++) {
+									        ia[i] = byteString.charCodeAt(i);
+									    }
+									
+									    return new Blob([ia], {type:mimeString});
+									}
+								     
+								
+								    // DOWNLOAD THE IMAGE.
+								    downloadImage = function (name, datauri) {
+								        var a = document.createElement('a');
+								        a.setAttribute('download', name + '.jpg');
+								        a.setAttribute('href', datauri);
+								        a.click();
+								    }
+							});
 
 					});
 </script>
@@ -214,9 +276,12 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" id="btnLamBaiThi">Làm
 					bài thi</button>
+				    
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 			</div>
+			 <div id="camera" style="height:auto;width:auto; text-align:left;"></div>
+			<input type="button" value="Take a Snap and Download Picture" id="btPic" onclick="takeSnapShot()" />
 
 		</div>
 	</div>

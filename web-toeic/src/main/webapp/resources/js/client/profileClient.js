@@ -20,7 +20,6 @@ $(document).ready(function() {
 			processData: false,
 			success: function (data) {
 				$('#info-success').text("Thêm mới anh thành công");
-                alert("Thêm mới anh thành công");
 			},
 			error: function (e) {
 				alert("error");

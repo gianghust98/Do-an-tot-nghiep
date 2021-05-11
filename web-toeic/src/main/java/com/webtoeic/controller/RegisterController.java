@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.*;
 
 import com.webtoeic.entities.NguoiDung;
 import com.webtoeic.entities.VaiTro;
+import com.webtoeic.grpc.TransferStudentInfoClient;
 import com.webtoeic.service.NguoiDungService;
 import com.webtoeic.service.SecurityService;
 import com.webtoeic.validator.NguoiDungValidator;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -41,6 +43,10 @@ public class RegisterController {
 
 	@Autowired
 	private NguoiDungValidator nguoiDungValidator;
+	
+	@Autowired
+	private TransferStudentInfoClient transferClient ;
+
 
 	@GetMapping("/register")
 	public String registerPage(Model model) {
@@ -65,7 +71,7 @@ public class RegisterController {
 	}
 	@PostMapping(value = "/register/save-image", consumes = "multipart/form-data")
 	@ResponseBody
-	public List<String> addImage(@RequestParam("file_image") MultipartFile file_image){
+	public List<String> addImage(@RequestParam("file_image") MultipartFile file_image) throws IOException {
 		List<String> response = new ArrayList<String>();
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -75,14 +81,19 @@ public class RegisterController {
 			// save file upload to local folder
 			Path pathImage = Paths.get(rootDirectory + "/resources/file/images/exam/" + "" + "." + file_image.getOriginalFilename());
 			file_image.transferTo(new File(pathImage.toString()));
-			nguoiDung.setMultipartFile(file_image.getOriginalFilename());
-			nguoiDungService.saveUserAfterUploadImage(nguoiDung);
+//			nguoiDung.setMultipartFile(file_image.getOriginalFilename());
+			System.out.println("id" + nguoiDung.getId());
+			
+			nguoiDungService.saveUser(nguoiDung);
+			System.out.println(transferClient.ImgRegister(nguoiDung.getId(),file_image.getBytes()));
+			
 		} catch (Exception e) {
 			response.add(e.toString());
 			System.out.println("ErrorReadFileExcel:" + e);
 
 		}
 		return response;
+		
 	}
 
 }
