@@ -35,6 +35,10 @@ public class NguoiDungService {
 		return nguoiDungRepo.save(nd);
 	}
 
+	public NguoiDung saveUserAfterUploadImage(NguoiDung nd) {
+		return nguoiDungRepo.save(nd);
+	}
+
 	public NguoiDung findById(long id) {
 		NguoiDung nd = nguoiDungRepo.findById(id).get();
 		return nd;
