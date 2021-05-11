@@ -46,6 +46,8 @@ public class ClientController {
 	@Autowired
 	private NguoiDungService nguoiDungService;
 	
+	@Autowired
+	private TransferStudentInfoClient transferClient ;
 	
 	@ModelAttribute("loggedInUser")
 	public NguoiDung loggedInUser() {
@@ -102,6 +104,14 @@ public class ClientController {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		return "redirect:/login?logout";
+	}
+	@PostMapping("/takePicture/beforeTest")
+	public String beforeTest(@RequestParam("canvasImage") MultipartFile file) throws IOException {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
+//		System.out.println(transferClient.ImgRegister(nguoiDung.getId(),file.getBytes()));
+		FileUtils.writeByteArrayToFile(new File("pathname.jpg"), file.getBytes());
+		return "redirect:/listExam";
 	}
 
 
