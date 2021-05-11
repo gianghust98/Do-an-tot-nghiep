@@ -282,6 +282,12 @@
 			</div>
 			 <div id="camera" style="height:auto;width:auto; text-align:left;"></div>
 			<input type="button" value="Take a Snap and Download Picture" id="btPic" onclick="takeSnapShot()" />
+			
+			 <c:if test="${message == 'true'}">
+				<button type="button" >Take Exam</button>
+			</c:if>
+			 
+
 
 		</div>
 	</div>

@@ -21,6 +21,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.security.web.bind.support.AuthenticationPrincipalArgumentResolver;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,10 +46,7 @@ public class ClientController {
 	@Autowired
 	private NguoiDungService nguoiDungService;
 	
-	@Autowired
-	private TransferStudentInfoClient transferClient ;
 	
-
 	@ModelAttribute("loggedInUser")
 	public NguoiDung loggedInUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -105,13 +103,6 @@ public class ClientController {
 		}
 		return "redirect:/login?logout";
 	}
-	@PostMapping("/takePicture/beforeTest")
-	public String beforeTest(@RequestParam("canvasImage") MultipartFile file) throws IOException {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
-//		System.out.println(transferClient.ImgRegister(nguoiDung.getId(),file.getBytes()));
-		FileUtils.writeByteArrayToFile(new File("pathname.jpg"), file.getBytes());
-		return "redirect:/listExam";
-	}
+
 
 }

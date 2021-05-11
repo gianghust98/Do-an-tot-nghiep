@@ -14,8 +14,7 @@ message ImgReply {
 
 message ImgAuthRequest{
     string email =1;
-    string password = 2;
-    bytes photo = 3;
+    bytes photo = 2;
 }
 
 service Greeter {
