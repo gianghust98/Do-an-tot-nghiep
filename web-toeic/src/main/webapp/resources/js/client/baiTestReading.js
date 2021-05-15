@@ -70,8 +70,11 @@ function startTimerReading(duration, display) {
         // display = document.querySelectorAll('#timeReading');
         // var check = document.getElementById("timeReading").value();
          //console.log("check:"+check);
-    	 startTimerReading(fortyFiveMinutes,'45:00');
-   };
+		 startTimerReading(fortyFiveMinutes, '45:00');
+		 regconizedUserTestReading();
+ };
+
+
 
 
    
@@ -190,6 +193,60 @@ function clickResutlReading(){
 	
 	
 }
+//CONVERT dataURI
+function dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], { type: mimeString });
+}
+function regconizedUserTestReading() {
+    Webcam.set({
+        width: 220,
+        height: 220,
+        image_format: 'jpeg',
+        jpeg_quality: 100
+    });
+    Webcam.attach('#camera3');
+    console.log("fefefefefe");
+
+    take_snapshot = function () {
+        Webcam.snap(function (data_uri) {
+            var blob = dataURItoBlob(data_uri);
+            console.log('blob', blob);
+            var fd = new FormData(document.forms[0]);
+            fd.append("canvasImage", blob);
+            console.log('file');
+
+            $.ajax({
+                url: 'http://localhost:8081/webtoeic/takePicture/duringTest',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: fd
+            });
+        });
+
+    }
+    console.log("hihihihihhihih")
+
+
+}
+
 
 
 
@@ -246,6 +303,13 @@ function clickResutlReading(){
 //	
 //	
 //});
+
+  
+    
+
+
+
+
 
 
 

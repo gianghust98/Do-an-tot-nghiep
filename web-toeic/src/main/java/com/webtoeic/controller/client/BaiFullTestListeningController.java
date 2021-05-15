@@ -1,5 +1,8 @@
 package com.webtoeic.controller.client;
 
+import java.io.File;
+
+import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,27 +10,34 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.webtoeic.entities.CauHoiBaiThiThu;
 import com.webtoeic.entities.KetQuaBaiTest;
 import com.webtoeic.entities.NguoiDung;
+import com.webtoeic.grpc.TransferStudentInfoClient;
 import com.webtoeic.service.BaiThiThuService;
 import com.webtoeic.service.CauHoiBaiThiThuService;
 import com.webtoeic.service.KetQuaBaiTestService;
 import com.webtoeic.service.NguoiDungService;
+import com.webtoeic.grpc.TransferStudentInfoClient;
+
 
 @Controller
 public class BaiFullTestListeningController {
@@ -47,6 +57,13 @@ public class BaiFullTestListeningController {
 	@Autowired
 	private NguoiDungService nguoiDungService;
 	
+	@Autowired
+	private TransferStudentInfoClient transferClient ;
+	
+	public String authUserTest;
+	public int countFalse = 0;
+	public String check = "false";
+	
 	@ModelAttribute("loggedInUser")
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		return (NguoiDung) request.getSession().getAttribute("loggedInUser");
@@ -54,7 +71,21 @@ public class BaiFullTestListeningController {
 	
 	
 	
-	
+	@PostMapping("/takePicture/duringTest")
+	public void beforeTest(ModelMap model,@RequestParam("canvasImage") MultipartFile file) throws IOException {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
+		
+//		System.out.println("during test: user " + transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes()));
+		authUserTest = transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes());
+		System.out.println("during test; "+ authUserTest);
+		if(check.equals(authUserTest)) {
+			countFalse = countFalse + 1 ;
+			System.out.println("countFalse: "+ countFalse);
+		}
+		
+		
+	}
 	@RequestMapping(value="/showResultListening/{examId}/{socaudung}",method=RequestMethod.POST)
 	public String showResult(Model model,@RequestBody String[] jsonAnswerUser,
 							@PathVariable("examId") int examId,

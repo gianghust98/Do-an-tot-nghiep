@@ -80,8 +80,8 @@
 								function(){
 									// CAMERA SETTINGS.
 									    Webcam.set({
-									        width: 320,
-									        height: 300,
+									        width: 280,
+									        height: 280,
 									        image_format: 'jpeg',
 									        jpeg_quality: 100
 									    });
@@ -128,14 +128,7 @@
 									    return new Blob([ia], {type:mimeString});
 									}
 								     
-								
-								    // DOWNLOAD THE IMAGE.
-								    downloadImage = function (name, datauri) {
-								        var a = document.createElement('a');
-								        a.setAttribute('download', name + '.jpg');
-								        a.setAttribute('href', datauri);
-								        a.click();
-								    }
+					
 							});
 
 					});
@@ -283,8 +276,9 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 			</div>
-			 <div id="camera" style="height:auto;width:auto; text-align:left;"></div>
-			<input type="button" value="Take a Snap and Download Picture" id="btPic" onclick="takeSnapShot()" />
+			 
+			<input type="button" value="Take a Snap " id="btPic" onclick="takeSnapShot()" />
+			<div id="camera" style="height:auto;width:auto; text-align:center;"></div>
 			 
 		</div>
 	</div>

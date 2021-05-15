@@ -83,7 +83,8 @@ $(document).ready(function(){
 	
 	
 	$('#btnSubmit').click(function(){
-		startReadingClock ()
+	    startReadingClock();
+	    
 		var answerArr = answerUser();
 		var correctArr = correctAnswer();
 		var countCorrect = 0;
@@ -124,6 +125,7 @@ $(document).ready(function(){
 		xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhttp.send(jsonAnswerUser);
+		
 		
 		
 	});
@@ -221,12 +223,65 @@ function startTimer(duration, display) {
    
 }
 
+
+
+
+function regconizedUserTestListening() {
+    Webcam.set({
+        width: 220,
+        height: 220,
+        image_format: 'jpeg',
+        jpeg_quality: 100
+    });
+    Webcam.attach('#camera2');
+
+    take_snapshot = function () {
+        Webcam.snap(function (data_uri) {
+            var blob = dataURItoBlob(data_uri);
+            console.log('blob', blob);
+            var fd = new FormData(document.forms[0]);
+            fd.append("canvasImage", blob);
+            
+
+            $.ajax({
+                url: 'http://localhost:8081/webtoeic/takePicture/duringTest',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: fd
+            });
+        });
+
+    }
+    setTimeout(take_snapshot, 4000);
+    setTimeout(take_snapshot, 8000);
+    setTimeout(take_snapshot, 30000);
+   
+
+}
+    //check authen during test reading
+
+								     
 window.onload = function () {
 		  //change time here
     	 //var thirtyMinutes = 0.2 * 30;
 		 var thirtyMinutes = 60 * 30;
          display = document.querySelector('#time');
-    	 startTimer(thirtyMinutes, display);
+         startTimer(thirtyMinutes, display);
+         regconizedUserTestListening();
+         
+         
+//         var amoutOfTime = 4000;
+//        for (i = 1; i < 6; i++) {
+//             amoutOfTime = amoutOfTime *i;
+//             console.log('amoutOfTime', amoutOfTime);
+//            setTimeout(take_snapshot, amoutOfTime);
+
+
+         
+
+         
     };
 
 

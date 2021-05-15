@@ -45,7 +45,7 @@ public class BaiFullTestController {
 	CauHoiBaiThiThuService cauhoibaithithuService;
 	
 	@Autowired
-	KetQuaBaiTestService ketquabaitestService;
+	KetQuaBaiTestService ketquabaitestService;  
 	
 	@Autowired
 	private NguoiDungService nguoiDungService;
@@ -66,7 +66,7 @@ public class BaiFullTestController {
 		
 		try {
 				model.addAttribute("message", authUser);
-				System.out.println("testingggg"+ authUser);
+				//System.out.println("testinggg"+ authUser);
 				Page<BaiThiThu> list = baithithuService.getBaiThiThu(page-1, 4);
 				
 				int totalPage = list.getTotalPages();
@@ -74,7 +74,7 @@ public class BaiFullTestController {
 				List<Integer> pagelist = new ArrayList<Integer>();
 				
 				//Lap ra danh sach cac trang
-				if(page==1 || page ==2 )
+				if(page==1 || page ==2 )  
 				{
 					for(int i = 2; i <=3 && i<=totalPage; i++)
 					{
@@ -117,7 +117,7 @@ public class BaiFullTestController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
 		
-		System.out.println(transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes()));
+		//System.out.println(transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes()));
 		authUser = transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes());
 		FileUtils.writeByteArrayToFile(new File("pathname.jpg"), file.getBytes());
 		return "redirect:/listExam";
