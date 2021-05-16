@@ -98,6 +98,7 @@
 </style>
 
 <script type="text/javascript">
+
 	
  	  
 </script>
@@ -149,7 +150,7 @@
 							<!-- 	<input type="button" id="btndoAgain" class="btn btn-warning" value="Làm lại"> -->
 							<input type="button" class="btn btn-primary" id="btnResult"
 								value="Chấm điểm" /> 
-							<input type="button"class="btn btn-danger" id="btnSubmit" value="Làm bài đọc" onclick=" regconizedUserTestReading()"/> <br>
+							<input type="button"class="btn btn-danger" id="btnSubmit" value="Làm bài đọc"/> <br>
 							
 							<hr width="60%">
 						</div>

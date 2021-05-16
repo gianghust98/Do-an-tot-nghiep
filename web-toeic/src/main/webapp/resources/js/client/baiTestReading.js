@@ -71,7 +71,7 @@ function startTimerReading(duration, display) {
         // var check = document.getElementById("timeReading").value();
          //console.log("check:"+check);
 		 startTimerReading(fortyFiveMinutes, '45:00');
-		 regconizedUserTestReading();
+		 
  };
 
 
@@ -213,6 +213,9 @@ function dataURItoBlob(dataURI) {
 
     return new Blob([ia], { type: mimeString });
 }
+function resetWebcam() {
+    Webcam.reset();
+}
 function regconizedUserTestReading() {
     Webcam.set({
         width: 220,
@@ -220,16 +223,15 @@ function regconizedUserTestReading() {
         image_format: 'jpeg',
         jpeg_quality: 100
     });
-    Webcam.attach('#camera3');
-    console.log("fefefefefe");
+//    Webcam.attach('#cameraReading');
+    
 
     take_snapshot = function () {
         Webcam.snap(function (data_uri) {
             var blob = dataURItoBlob(data_uri);
-            console.log('blob', blob);
             var fd = new FormData(document.forms[0]);
             fd.append("canvasImage", blob);
-            console.log('file');
+            console.log('reading test...');
 
             $.ajax({
                 url: 'http://localhost:8081/webtoeic/takePicture/duringTest',
@@ -242,9 +244,9 @@ function regconizedUserTestReading() {
         });
 
     }
-    console.log("hihihihihhihih")
-
-
+    setTimeout(take_snapshot, 5000);
+    setTimeout(take_snapshot, 10000);
+    setTimeout(resetWebcam, 15000);
 }
 
 

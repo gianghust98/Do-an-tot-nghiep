@@ -129,6 +129,7 @@
 	<div id="resutlTest">
 		
 		<div id="content" class="container-fluid fill ">
+			<div id="cameraReading" style="height:auto;width:auto; text-align:left;"></div>
 			<form id="submitForm" name="submitForm">
 				<div class="row">
 					<div id="navigation" class="col-md-3">
@@ -136,7 +137,7 @@
 						<div class="fix-scrolling">
 							<br>
 							<div>
-								<div id="camera3" style="height:auto;width:auto; text-align:left;"></div>
+								
 								<span id="timeReading">45:00</span>
 							</div>
 							<hr width="60%">

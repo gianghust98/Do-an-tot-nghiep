@@ -84,6 +84,7 @@ $(document).ready(function(){
 	
 	$('#btnSubmit').click(function(){
 	    startReadingClock();
+	    regconizedUserTestReading();
 	    
 		var answerArr = answerUser();
 		var correctArr = correctAnswer();
@@ -256,13 +257,11 @@ function regconizedUserTestListening() {
     }
     setTimeout(take_snapshot, 4000);
     setTimeout(take_snapshot, 8000);
-    setTimeout(take_snapshot, 30000);
+ //   setTimeout(resetWebcam, 15000);
    
 
 }
-    //check authen during test reading
-
-								     
+   
 window.onload = function () {
 		  //change time here
     	 //var thirtyMinutes = 0.2 * 30;
@@ -270,6 +269,7 @@ window.onload = function () {
          display = document.querySelector('#time');
          startTimer(thirtyMinutes, display);
          regconizedUserTestListening();
+        
          
          
 //         var amoutOfTime = 4000;
