@@ -18,9 +18,6 @@ $(document).ready(function() {
 			contentType: false,
 			cache: false,
 			processData: false,
-			success: function (data) {
-				$('#info-success').text("Thêm mới anh thành công");
-			},
 			error: function (e) {
 				alert("error");
 				console.log("ERROR: ", e);

@@ -246,7 +246,7 @@ function regconizedUserTestReading() {
     }
     setTimeout(take_snapshot, 5000);
     setTimeout(take_snapshot, 10000);
-    setTimeout(resetWebcam, 15000);
+   // setTimeout(resetWebcam, 15000);
 }
 
 

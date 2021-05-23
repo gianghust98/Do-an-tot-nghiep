@@ -84,7 +84,8 @@ $(document).ready(function(){
 	
 	$('#btnSubmit').click(function(){
 	    startReadingClock();
-	    regconizedUserTestReading();
+	    //   regconizedUserTestReading();
+	    regconizedUserTestListening();
 	    
 		var answerArr = answerUser();
 		var correctArr = correctAnswer();
@@ -224,7 +225,9 @@ function startTimer(duration, display) {
    
 }
 
-
+function resetWebcam() {
+    Webcam.reset();
+}
 
 
 function regconizedUserTestListening() {
@@ -242,10 +245,11 @@ function regconizedUserTestListening() {
             console.log('blob', blob);
             var fd = new FormData(document.forms[0]);
             fd.append("canvasImage", blob);
+            var examId = $("#id_bai_exam").val();
             
 
             $.ajax({
-                url: 'http://localhost:8081/webtoeic/takePicture/duringTest',
+                url: 'http://localhost:8081/webtoeic/takePicture/duringTest?idExam=' + examId,
                 type: 'POST',
                 processData: false,
                 contentType: false,
@@ -257,10 +261,12 @@ function regconizedUserTestListening() {
     }
     setTimeout(take_snapshot, 4000);
     setTimeout(take_snapshot, 8000);
- //   setTimeout(resetWebcam, 15000);
+    setTimeout(take_snapshot, 15000);
+    //setTimeout(resetWebcam, 17000);
    
 
 }
+
    
 window.onload = function () {
 		  //change time here

@@ -22,6 +22,7 @@ import com.webtoeic.service.NguoiDungService;
 import com.webtoeic.service.SecurityService;
 import com.webtoeic.validator.NguoiDungValidator;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.io.IOException;
@@ -69,32 +70,6 @@ public class RegisterController {
 		securityService.autologin(nguoiDung.getEmail(), nguoiDung.getConfirmPassword());
 		return "redirect:/";
 	}
-	@PostMapping(value = "/register/save-image", consumes = "multipart/form-data")
-	@ResponseBody
-	public List<String> addImage(@RequestParam("file_image") MultipartFile file_image) throws IOException {
-		List<String> response = new ArrayList<String>();
-		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
-
-		try {
-			// save file upload to local folder
-			Path pathImage = Paths.get(rootDirectory + "/resources/file/images/exam/" + "" + "." + file_image.getOriginalFilename());
-			file_image.transferTo(new File(pathImage.toString()));
-			nguoiDung.setMultipartFile(file_image.getOriginalFilename());
-			//nguoiDungService.saveUserAfterUploadImage(nguoiDung);
-			// System.out.println("id" + nguoiDung.getId());
-			
-			// nguoiDungService.saveUser(nguoiDung);
-			 System.out.println(transferClient.ImgRegister(nguoiDung.getId(),file_image.getBytes()));
-			
-		} catch (Exception e) {
-			response.add(e.toString());
-			System.out.println("ErrorReadFileExcel:" + e);
-
-		}
-		return response;
-		
-	}
+	
 
 }
