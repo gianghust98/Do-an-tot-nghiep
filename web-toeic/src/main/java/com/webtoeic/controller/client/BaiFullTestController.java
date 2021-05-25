@@ -53,7 +53,12 @@ public class BaiFullTestController {
 	@Autowired
 	private TransferStudentInfoClient transferClient ;
 	
+	public String authUserTest;
+	public int countFalse = 0;
+	public String check = "false";
 	public String authUser;
+	public String status;
+	
 	@ModelAttribute("loggedInUser")
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		return (NguoiDung) request.getSession().getAttribute("loggedInUser");
@@ -138,6 +143,17 @@ public class BaiFullTestController {
 		
 		
 	}
+	@PostMapping("/takePicture/duringTest")
+	public void beforeTest(ModelMap model,@RequestParam("canvasImage") MultipartFile file,@RequestParam("idExam") int idBaiThi ) throws IOException {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());		
+		authUserTest = transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes());
+		System.out.println("during test: "+ authUserTest);
+		if(check.equals(authUserTest)) {
+			countFalse = countFalse + 1 ;
+			System.out.println("countFalse: "+ countFalse);
+		}
+	}
 	
 	
 	
@@ -150,6 +166,7 @@ public class BaiFullTestController {
 		NguoiDung currentUser = nguoiDungService.findByEmail(auth.getName());
 		
 	 	Date time = new Date();
+	 	
 		KetQuaBaiTest ketquabaitest = new KetQuaBaiTest();
 		ketquabaitest.setNgaythi(time);
 		ketquabaitest.setBaithithu(baithithuService.getBaiThiThu(examId).get(0));
@@ -158,11 +175,22 @@ public class BaiFullTestController {
 		ketquabaitest.setSocaudung(correctListening+correctReading);
 		ketquabaitest.setSocausai(100-correctListening-correctReading);
 		ketquabaitest.setNguoidung(currentUser);
+		ketquabaitest.setCount_false(countFalse);
+		if(countFalse > 2) {
+			ketquabaitest.setStatus("Rejected");
+			status = "Không chấp nhận!";
+		}else {
+			ketquabaitest.setStatus("Approve");
+			status = "Chấp nhận!";
+		}
+		
 		
 		ketquabaitestService.save(ketquabaitest);
 		model.addAttribute("correctListening",correctListening);
 		model.addAttribute("correctReading",correctReading);
 		model.addAttribute("total",correctReading+ correctListening);
+		model.addAttribute("countFalse", countFalse);
+		model.addAttribute("except",status);
 		
 		
 		return "client/resultTestUser";

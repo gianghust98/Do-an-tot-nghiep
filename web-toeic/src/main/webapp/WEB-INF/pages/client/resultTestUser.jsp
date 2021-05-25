@@ -13,6 +13,8 @@
 	<h4>Tổng số câu đúng: ${total}/100</h4>
 	<h4>Số câu đúng phần Listening: ${correctListening}/50</h4>
 	<h4>Số câu đúng phần Reading: ${correctReading}/50</h4>
+	<h4>Số lần vi phạm xác thực: ${countFalse}</h4>
+	<h4>Trạng thái chấp nhập kết quả bài thi: ${except}</h4>
 
 	<br>
 	<a style="text-decoration: none;"
@@ -25,8 +27,7 @@
 		vựng</a>
 	<br>
 	<br>
-	<a style="text-decoration: none;" href="#"> &larr; Bài tập ngữ pháp</a>
-	<br>
+	
 	<br>
 
 </body>

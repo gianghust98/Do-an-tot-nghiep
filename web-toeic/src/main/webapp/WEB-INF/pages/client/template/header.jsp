@@ -63,8 +63,6 @@ h3 {
 										<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown">Luyện Tập <b class="caret"></b></a>
 											<ul class="dropdown-menu">
-												<li><a href="/webtoeic/listening/">Luyện bài nghe</a></li>
-												<li><a href="/webtoeic/reading/">Luyện bài đọc</a></li>
 												<li><a href="/webtoeic/listGrammar">Ngữ pháp</a></li>
 												<li><a href="<%=request.getContextPath()%>/listVocab">Từ
 														vựng</a></li>
@@ -80,8 +78,6 @@ h3 {
 										<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown">Luyện Tập <b class="caret"></b></a>
 											<ul class="dropdown-menu">
-												<li><a href="/webtoeic/listening/">Luyện bài nghe</a></li>
-												<li><a href="/webtoeic/reading/">Luyện bài đọc</a></li>
 												<li><a href="/webtoeic/listGrammar">Ngữ pháp</a></li>
 												<li><a href="<%=request.getContextPath()%>/listVocab">Từ
 														vựng</a></li>

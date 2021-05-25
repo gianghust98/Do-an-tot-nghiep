@@ -16,8 +16,6 @@
 	<div class="col-md-9 animated bounce">
 		<h3 class="page-header">Quản lý Tài khoản</h3>
 
-		<button class="btn btn-success btnThemTaiKhoan">Thêm mới tài
-			khoản</button>
 		<hr>
 		<div class="form-group form-inline">
 			<label for="sel1"><strong>Lọc tài khoản:</strong> </label> <select

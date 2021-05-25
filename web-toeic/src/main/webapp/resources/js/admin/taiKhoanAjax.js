@@ -42,7 +42,7 @@ $(document).ready(function() {
 				};
 			},
 			error : function(e){
-				alert("Error: ",e);
+			
 				console.log("Error" , e );
 			}
 		});

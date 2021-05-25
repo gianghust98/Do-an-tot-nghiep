@@ -34,9 +34,5 @@ public class KetQuaBaiTestImpl implements KetQuaBaiTestService{
 		return null;
 	}
 
-//	@Override
-//	public KetQuaBaiTest findKetQuaBaiTest(Integer idbaithi) {
-//		return ketquabaitestRepo.findKetQuaBaiTest(idbaithi);
-//	}
-	
+
 }

@@ -63,107 +63,57 @@ public class BaiFullTestListeningController {
 	@Autowired
 	private NguoiDungService nguoiDungService;
 	
-	@Autowired
-	private TransferStudentInfoClient transferClient ;
-	
-	public String authUserTest;
-	public int countFalse = 0;
-	public String check = "false";
+//	@Autowired
+//	private TransferStudentInfoClient transferClient ;
+//	
+//	public String authUserTest;
+//	public int countFalse = 0;
+//	public String check = "false";
+//	public int count = 0;
 	
 	@ModelAttribute("loggedInUser")
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		return (NguoiDung) request.getSession().getAttribute("loggedInUser");
 	}
 	
-	
-	
 //	@PostMapping("/takePicture/duringTest")
-//	public void beforeTest(ModelMap model,@RequestParam("canvasImage") MultipartFile file,@) throws IOException {
+//	public void beforeTest(ModelMap model,@RequestParam("canvasImage") MultipartFile file,@RequestParam("idExam") int idBaiThi ) throws IOException {
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
 //		
-////		System.out.println("during test: user " + transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes()));
 //		authUserTest = transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes());
-//		System.out.println("during test; "+ authUserTest);
+//		System.out.println("during test: "+ authUserTest);
+//		count = count+1;
 //		if(check.equals(authUserTest)) {
 //			countFalse = countFalse + 1 ;
 //			System.out.println("countFalse: "+ countFalse);
 //		}
 //		
+//		BaiThiThu baithithu = new BaiThiThu();
+//		Integer idBaiThiThu = idBaiThi;
 //		
-//	}
-	@PostMapping("/takePicture/duringTest")
-	public void beforeTest(ModelMap model,@RequestParam("canvasImage") MultipartFile file,@RequestParam("idExam") int idBaiThi ) throws IOException {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
-		
-//		System.out.println("during test: user " + transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes()));
-		authUserTest = transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes());
-		System.out.println("during test; "+ authUserTest);
-		if(check.equals(authUserTest)) {
-			countFalse = countFalse + 1 ;
-			System.out.println("countFalse: "+ countFalse);
-		}
-		
-		BaiThiThu baithithu = new BaiThiThu();
-		Integer idBaiThiThu = idBaiThi;
-		
-		System.out.println("idBaiThiThu: "+ idBaiThiThu);
-		
-		baithithu.setBaithithuid(idBaiThiThu);
-		
-		KetQuaBaiTest ketQuaBaiTest = new KetQuaBaiTest();
-		ketQuaBaiTest.setBaithithu(baithithu);
-		ketQuaBaiTest.setNguoidung(nguoiDung);
-		
-		System.out.println("countFalse2: "+ countFalse);
-		
-		ketQuaBaiTest.setCount_false(countFalse);
-		if(countFalse > 2) {
-			// save check valid countFalse and save to database
-				long idThiSinhLamBai = nguoiDung.getId();
-				ketQuaBaiTest.setStatus("Rejected");
-				if(ObjectUtils.isEmpty(countFalse)) {
-					countFalse = 0;
-				} else {
-					ketQuaBaiTest.setCount_false(countFalse);
-				}
-				System.out.println("save success");
-		} else {
-			ketQuaBaiTest.setStatus("Approve");
-		}
-
-		ketquabaitestService.save(ketQuaBaiTest);
-		
-//		KetQuaBaiTest result = ketquabaitestService.findKetQuaBaiTest(idBaiThiThu); 
+//		System.out.println("idBaiThiThu: "+ idBaiThiThu);
+//	
+//		baithithu.setBaithithuid(idBaiThiThu);
 //		
-//		System.out.println("ketQuaBaiTest: "+ ketQuaBaiTest);
-//		boolean checkExists = false;
-//		List<KetQuaBaiTest> listkq = ketquabaitestService.findAllKetQua();
-//		if(!ObjectUtils.isEmpty(listkq)) {
-//		for(KetQuaBaiTest item:listkq) {
-//			if(item.getBaithithu().getBaithithuid().equals(idBaiThiThu) && (item.getNguoidung().getId() == nguoiDung.getId() )) {
-//				checkExists = true;
-//				result.setCount_false(countFalse);				}
+//		KetQuaBaiTest ketQuaBaiTest = new KetQuaBaiTest();
+//		ketQuaBaiTest.setBaithithu(baithithu);
+//		ketQuaBaiTest.setNguoidung(nguoiDung);
+//		
+//		System.out.println("countFalse2: "+ countFalse);
+//		if(count == 6) {
+//			ketQuaBaiTest.setCount_false(countFalse);
+//			if(countFalse > 2) {
+//				ketQuaBaiTest.setStatus("Rejected");
+//			}else {
+//				ketQuaBaiTest.setStatus("Approve");
 //			}
+//			ketquabaitestService.save(ketQuaBaiTest);
+//			
 //		}
 //		
-//		if(checkExists) {
-//			
-//	ketquabaitestService.save(result);
-//	
-//	
-//	} else {
-//	ketquabaitestService.save(ketQuaBaiTest);
-//
-//	}		
-//	
 		
-		
-		
-		System.out.println("id bai thi "+ idBaiThi);
-		
-	}
+
 	@RequestMapping(value="/showResultListening/{examId}/{socaudung}",method=RequestMethod.POST)
 	public String showResult(Model model,@RequestBody String[] jsonAnswerUser,
 							@PathVariable("examId") int examId,
@@ -187,8 +137,6 @@ public class BaiFullTestListeningController {
 //		ketquabaitest.setNguoidung(currentUser);
 //		
 //		ketquabaitestService.save(ketquabaitest);
-	 
-	 //
 	 
 	 model.addAttribute("socaudung",socaudung);
 	 model.addAttribute("listQuestion",list);
