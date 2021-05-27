@@ -14,6 +14,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>	
+
 <script
 	src="${pageContext.request.contextPath}/resources/js/client/baiTestReading.js"></script>
 <script type="text/javascript"
@@ -99,6 +101,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+	
+         
 
 	});
 </script>
@@ -121,8 +125,12 @@
 	</div>
 	<!--/End Header-->
 
+	
 	<div id="resutlTest">
+		
 		<div id="content" class="container-fluid fill ">
+			<div id="camera2" style="height:auto;width:auto; text-align:left;"></div>
+			
 			<form id="submitForm" name="submitForm">
 				<div class="row">
 					<div id="navigation" class="col-md-3">
@@ -130,6 +138,7 @@
 						<div class="fix-scrolling">
 							<br>
 							<div>
+								
 								<span id="timeReading">45:00</span>
 							</div>
 							<hr width="60%">

@@ -20,15 +20,6 @@
 
         <ul class="nav navbar-nav side-bar">       
          
-          <li class="side-bar tmargin">
-            <a href="<c:url value='/admin/bai-nghe' />">
-              <span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>Quản lý Bài Nghe</a>
-          </li>
-        
-          <li class="side-bar">
-            <a href='<c:url value="/admin/bai-doc"/>' >
-              <span class="glyphicon glyphicon-folder-open">&nbsp;</span>Quản lý Bài đọc</a>
-          </li>
         
           <li class="side-bar">
             <a href='<c:url value="/admin/exam"/>'>

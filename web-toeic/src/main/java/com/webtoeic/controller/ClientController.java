@@ -26,8 +26,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.webtoeic.entities.NguoiDung;
 import com.webtoeic.grpc.TransferStudentInfoClient;
@@ -96,7 +98,25 @@ public class ClientController {
 		nguoiDungService.updateUser(currentUser);
 		return "redirect:/profile";
 	}
-
+	
+	@PostMapping(value = "/register/save-image", consumes = "multipart/form-data")
+	@ResponseBody
+	public String addImage(@RequestParam("file_image") MultipartFile file_image,RedirectAttributes redirect) throws IOException {
+//		List<String> response = new ArrayList<String>();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
+		try {		
+			System.out.println(transferClient.ImgRegister(nguoiDung.getId(),file_image.getBytes()));
+			redirect.addFlashAttribute("successImg", "Saved image successfully!");			
+		} catch (Exception e) {
+//			response.add(e.toString());
+			System.out.println("ErrorReadFile:" + e);
+		}
+//		return response;
+		return "redirect:/profile";
+					
+	}
+	
 	@GetMapping(value = "/logout")
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -105,14 +125,7 @@ public class ClientController {
 		}
 		return "redirect:/login?logout";
 	}
-//	@PostMapping("/takePicture/beforeTest")
-//	public String beforeTest(@RequestParam("canvasImage") MultipartFile file) throws IOException {
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
-////		System.out.println(transferClient.ImgRegister(nguoiDung.getId(),file.getBytes()));
-//		FileUtils.writeByteArrayToFile(new File("pathname.jpg"), file.getBytes());
-//		return "redirect:/listExam";
-//	}
+
 
 
 }

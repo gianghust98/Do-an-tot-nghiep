@@ -10,6 +10,13 @@
 </head>
 <body>
 	<jsp:include page="template/header.jsp"></jsp:include>
+	<div th:if="${successImg}">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+			</button>
+			<span th:text="${successImg}"></span>
+	</div>
+	
 	<div class="container">
 		<h3 class="page-header">Thông tin cá nhân</h3>
 		<ul class="nav nav-tabs" id="tabs">

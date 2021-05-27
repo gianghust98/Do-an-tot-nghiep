@@ -180,7 +180,6 @@
 					src="${pageContext.request.contextPath}/resources/file/images/feature-listenandread.jpg">
 				<h2>Bài tập phần nghe, đọc</h2>
 				<p>Sử dụng các dạng bài tập thường xuyên xuất hiện.</p>
-				<a  href="#" id="modal2" class="openModalFunction">Chi tiết &rarr;</a>
 			</div>
 
 			<div class="span4">

@@ -28,6 +28,12 @@ public class KetQuaBaiTest {
 	
 	@Column(name = "socaudung")
 	private int socaudung;
+	
+	@Column ( name = "status")
+	private String status;
+	
+	@Column ( name = "count_false")
+	private int count_false;
 
 	@Column(name = "socausai")
 	private int socausai;
@@ -77,6 +83,33 @@ public KetQuaBaiTest() {
 	this.nguoidung = nguoidung;
 	this.baithithu = baithithu;
 }
+
+
+	
+	public String getStatus() {
+		return status;
+	}
+
+
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+
+
+	public int getCount_false() {
+		return count_false;
+	}
+
+
+
+
+	public void setCount_false(int count_false) {
+		this.count_false = count_false;
+	}
 
 
 

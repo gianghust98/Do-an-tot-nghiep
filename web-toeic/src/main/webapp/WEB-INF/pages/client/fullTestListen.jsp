@@ -18,6 +18,7 @@
 	src="${pageContext.request.contextPath}/resources/js/client/baiTestListening.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/client/baiTestReading.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
@@ -97,7 +98,9 @@
 </style>
 
 <script type="text/javascript">
+
 	
+ 	  
 </script>
 <body>
 
@@ -112,14 +115,12 @@
 						Home</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 					&nbsp <span>Bài test Listening</span>
 				</p>
+				
+				
 			</div>
 
 			<!--  
-<div>
-		<c:forEach begin="1" end="50" varStatus="loop">
-			<div class="numberCircle" id="answer${loop.index}">${loop.index}</div>	  		 
-		</c:forEach>
-</div>
+
 
 -->
 
@@ -128,6 +129,7 @@
 
 
 		<!--/End Header-->
+		<div id="camera2" style="height:auto;width:auto; text-align:left;"></div>
 
 		<div id="content" class="container-fluid fill">
 			<form id="submitForm" name="submitForm">
@@ -147,8 +149,9 @@
 							<br> <br>
 							<!-- 	<input type="button" id="btndoAgain" class="btn btn-warning" value="Làm lại"> -->
 							<input type="button" class="btn btn-primary" id="btnResult"
-								value="Chấm điểm" /> <input type="button"
-								class="btn btn-danger" id="btnSubmit" value="Làm bài đọc" /> <br>
+								value="Chấm điểm" /> 
+							<input type="button"class="btn btn-danger" id="btnSubmit" value="Làm bài đọc"/> <br>
+							
 							<hr width="60%">
 						</div>
 
