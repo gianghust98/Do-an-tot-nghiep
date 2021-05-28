@@ -84,8 +84,8 @@ $(document).ready(function(){
 	
 	$('#btnSubmit').click(function(){
 	    startReadingClock();
-	    //   regconizedUserTestReading();
-	    regconizedUserTestListening();
+	    regconizedUserTestReading();
+	    // regconizedUserTestListening();
 	    
 		var answerArr = answerUser();
 		var correctArr = correctAnswer();
@@ -258,13 +258,18 @@ function regconizedUserTestListening() {
             });
         });
 
-    }
-    setTimeout(take_snapshot, 4000);
-    setTimeout(take_snapshot, 8000);
-    setTimeout(take_snapshot, 15000);
+    };
+
+	var step = 3000;
+	for(i = 1;i<10;i++){
+		setTimeout(take_snapshot, step);
+		step = step + 3000;
+	}
+    // setTimeout(take_snapshot, 4000);
+    // setTimeout(take_snapshot, 8000);
+    // setTimeout(take_snapshot, 15000);
     //setTimeout(resetWebcam, 17000);
    
-
 }
 
    
@@ -276,17 +281,6 @@ window.onload = function () {
          startTimer(thirtyMinutes, display);
          regconizedUserTestListening();
         
-         
-         
-//         var amoutOfTime = 4000;
-//        for (i = 1; i < 6; i++) {
-//             amoutOfTime = amoutOfTime *i;
-//             console.log('amoutOfTime', amoutOfTime);
-//            setTimeout(take_snapshot, amoutOfTime);
-
-
-         
-
          
     };
 

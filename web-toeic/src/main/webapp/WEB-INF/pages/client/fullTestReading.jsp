@@ -129,7 +129,7 @@
 	<div id="resutlTest">
 		
 		<div id="content" class="container-fluid fill ">
-			<div id="camera2" style="height:auto;width:auto; text-align:left;"></div>
+			
 			
 			<form id="submitForm" name="submitForm">
 				<div class="row">

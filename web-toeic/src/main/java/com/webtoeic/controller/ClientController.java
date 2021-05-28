@@ -101,19 +101,17 @@ public class ClientController {
 	
 	@PostMapping(value = "/register/save-image", consumes = "multipart/form-data")
 	@ResponseBody
-	public String addImage(@RequestParam("file_image") MultipartFile file_image,RedirectAttributes redirect) throws IOException {
-//		List<String> response = new ArrayList<String>();
+	public String addImage(@RequestParam("file_image") MultipartFile file_image) throws IOException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String mess = "Upload image successfully!";
 		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
 		try {		
 			System.out.println(transferClient.ImgRegister(nguoiDung.getId(),file_image.getBytes()));
-			redirect.addFlashAttribute("successImg", "Saved image successfully!");			
+
 		} catch (Exception e) {
-//			response.add(e.toString());
 			System.out.println("ErrorReadFile:" + e);
 		}
-//		return response;
-		return "redirect:/profile";
+		return mess;
 					
 	}
 	

@@ -101,10 +101,7 @@ function clickSubmitReading(){
 	 if(answerArr[i] == correctArr[i] && answerArr[i] != ' ' ) correctReading++;
 		
 	}
-	
-//	console.log("read="+correctReading);
-//	console.log("listen="+correctListening);
-//	console.log("id="+examId);
+
 	
 	var url="http://localhost:8081/webtoeic/saveResultUser/"+examId+"/"+correctListening+"/"+correctReading;
 	
@@ -231,10 +228,11 @@ function regconizedUserTestReading() {
             var blob = dataURItoBlob(data_uri);
             var fd = new FormData(document.forms[0]);
             fd.append("canvasImage", blob);
-            console.log('reading test...');
+            //console.log('reading test...');
+			var examId = $("#id_bai_exam").val();
 
             $.ajax({
-                url: 'http://localhost:8081/webtoeic/takePicture/duringTest',
+                url: 'http://localhost:8081/webtoeic/takePicture/duringTest?idExam=' + examId,
                 type: 'POST',
                 processData: false,
                 contentType: false,
@@ -246,7 +244,9 @@ function regconizedUserTestReading() {
     }
     setTimeout(take_snapshot, 5000);
     setTimeout(take_snapshot, 10000);
-   // setTimeout(resetWebcam, 15000);
+	setTimeout(take_snapshot,15000);
+	setTimeout(take_snapshot,20000);
+
 }
 
 

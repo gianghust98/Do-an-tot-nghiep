@@ -186,11 +186,15 @@ public class BaiFullTestController {
 		
 		
 		ketquabaitestService.save(ketquabaitest);
+		
+		
 		model.addAttribute("correctListening",correctListening);
 		model.addAttribute("correctReading",correctReading);
 		model.addAttribute("total",correctReading+ correctListening);
 		model.addAttribute("countFalse", countFalse);
+		
 		model.addAttribute("except",status);
+		countFalse = 0;
 		
 		
 		return "client/resultTestUser";

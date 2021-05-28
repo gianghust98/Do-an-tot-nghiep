@@ -48,6 +48,7 @@ public class RegisterController {
 	@Autowired
 	private TransferStudentInfoClient transferClient ;
 
+	
 
 	@GetMapping("/register")
 	public String registerPage(Model model) {
