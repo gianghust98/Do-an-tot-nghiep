@@ -90,6 +90,7 @@ function clickSubmitReading(){
 	var examId = document.getElementById('id_bai_exam').value;
 
 	var correctListening = document.getElementById("soCauDungListening").value;
+	console.log('correct listening: ', correctListening);
 	
 	var answerArr = answerUserReading();
 
@@ -103,7 +104,9 @@ function clickSubmitReading(){
 	}
 
 	
-	var url="http://localhost:8081/webtoeic/saveResultUser/"+examId+"/"+correctListening+"/"+correctReading;
+	var url = "http://localhost:8081/webtoeic/saveResultUser/" + examId + "/" + correctListening + "/" + correctReading;
+	
+	console.log('correct reading: ', correctReading);
 	
 	if(window.XMLHttpRequest){
 		xhttp = new XMLHttpRequest();
@@ -119,6 +122,7 @@ function clickSubmitReading(){
 			
 			var data = xhttp.responseText;
 			document.getElementById("main").innerHTML = data;
+			console.log('data result: ', data);
 		}
 	}
 	
@@ -220,7 +224,7 @@ function regconizedUserTestReading() {
         image_format: 'jpeg',
         jpeg_quality: 100
     });
-//    Webcam.attach('#cameraReading');
+    Webcam.attach('#cameraReading');
     
 
     take_snapshot = function () {
@@ -245,7 +249,8 @@ function regconizedUserTestReading() {
     setTimeout(take_snapshot, 5000);
     setTimeout(take_snapshot, 10000);
 	setTimeout(take_snapshot,15000);
-	setTimeout(take_snapshot,20000);
+	setTimeout(take_snapshot, 20000);
+	setTimeout(resetWebcam, 22000);
 
 }
 
@@ -253,6 +258,18 @@ function regconizedUserTestReading() {
 
 
 
+
+
+window.onload = function () {
+    console.log("load reading test");
+    //change time here
+    //var thirtyMinutes = 0.2 * 30;
+    startReadingClock();
+    regconizedUserTestReading();
+    
+        
+         
+};
 
 
 //

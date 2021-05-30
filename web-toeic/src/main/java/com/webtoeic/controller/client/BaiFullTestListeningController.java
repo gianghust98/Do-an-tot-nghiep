@@ -75,6 +75,18 @@ public class BaiFullTestListeningController {
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		return (NguoiDung) request.getSession().getAttribute("loggedInUser");
 	}
+	@GetMapping("/doExam/listening")
+	public String DetailListening(Model model,@RequestParam("idExam") int id) {		
+		try {
+				List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuService.getBaiThiThu(id).get(0));
+				model.addAttribute("listQuestion",list);
+				return "client/fullTestListen";
+				
+		}catch(Exception e) {
+			System.out.println("error:"+e);
+			return "client/error";
+		}		
+	}
 	
 	
 

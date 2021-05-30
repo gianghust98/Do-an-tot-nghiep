@@ -150,8 +150,10 @@
 							<!-- 	<input type="button" id="btndoAgain" class="btn btn-warning" value="Làm lại"> -->
 							<input type="button" class="btn btn-primary" id="btnResult"
 								value="Chấm điểm" /> 
-							<input type="button"class="btn btn-danger" id="btnSubmit" value="Làm bài đọc"/> <br>
 							
+							<button type="button" class="btn btn-primary" id="btnSubmit">
+								<a id="url-id-exam-reading" href= "/webtoeic/doExam/reading?idExam=${idExam}">Làm bài đọc</a>					
+							</button>
 							<hr width="60%">
 						</div>
 

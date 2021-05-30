@@ -82,11 +82,11 @@ $(document).ready(function(){
 //	});
 	
 	
-	$('#btnSubmit').click(function(){
-	    startReadingClock();
-	    regconizedUserTestReading();
-	    // regconizedUserTestListening();
-	    
+    $('#btnSubmit').click(function () {
+        var examId = $("#id_bai_exam").val();
+        console.log("id exam reading: ", examId);
+        document.getElementById("url-id-exam-reading").href = "http://localhost:8081/webtoeic/doExam/reading?idExam=" + examId;
+	
 		var answerArr = answerUser();
 		var correctArr = correctAnswer();
 		var countCorrect = 0;
@@ -98,10 +98,9 @@ $(document).ready(function(){
 				
 			}
 			
-				
+			
 		var jsonAnswerUser = JSON.stringify(answerArr);
-		
-		var examId = $("#id_bai_exam").val();
+		console.log('count correct: ',countCorrect);	
 		
 		var url="http://localhost:8081/webtoeic/reading/"+examId+"/"+countCorrect;
 		
@@ -112,13 +111,14 @@ $(document).ready(function(){
 			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 		
-		xhttp.open("POST",url,true);
+	  	 xhttp.open("POST",url,true);
 		
-			xhttp.onreadystatechange = function(){
+	       xhttp.onreadystatechange = function(){
 			if(xhttp.readyState == 4){
 				
-				var data = xhttp.responseText;
-				document.getElementById("testReading").innerHTML = data;
+			//var data = xhttp.responseText;
+			//document.getElementById("testReading").innerHTML = data;
+			console.log('abcdefggggg');
 				
 			}
 		}
@@ -127,7 +127,14 @@ $(document).ready(function(){
 		xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhttp.send(jsonAnswerUser);
-		
+
+		// $.ajax({
+		// 	url: "http://localhost:8081/webtoeic/reading/" +examId+ "/" +countCorrect,
+		//    type: 'POST',
+		//    processData: false,
+		//    contentType: false,
+		//    dataType: 'json',
+		// });
 		
 		
 	});
@@ -176,11 +183,9 @@ $(document).ready(function(){
 			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 		
-		xhttp.open("POST",url,true);
-		
+		xhttp.open("POST",url,true);		
 			xhttp.onreadystatechange = function(){
-			if(xhttp.readyState == 4){
-				
+			if(xhttp.readyState == 4){				
 				var data = xhttp.responseText;
 				document.getElementById("main").innerHTML = data;
 			}
@@ -223,6 +228,25 @@ function startTimer(duration, display) {
 	    
     
    
+}
+function dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], { type: mimeString });
 }
 
 function resetWebcam() {

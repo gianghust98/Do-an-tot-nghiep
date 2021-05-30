@@ -99,13 +99,7 @@
 }
 </style>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-	
-         
 
-	});
-</script>
 <body>
 
 	<!--Header
@@ -130,7 +124,8 @@
 		
 		<div id="content" class="container-fluid fill ">
 			
-			
+			<div id="cameraReading" style="height:auto;width:auto; text-align:left;"></div>
+			<h4> listening correct: ${socauListeningCorrect} </h4>
 			<form id="submitForm" name="submitForm">
 				<div class="row">
 					<div id="navigation" class="col-md-3">

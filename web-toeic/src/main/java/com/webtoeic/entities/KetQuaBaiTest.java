@@ -66,11 +66,7 @@ public class KetQuaBaiTest {
 	
 public KetQuaBaiTest() {
 		
-	}
-
-
-	
-	
+	}	
 	public KetQuaBaiTest(Integer ketquaid, int socaudung, int socausai, Date ngaythi, int correctreading, int correctlisten,
 		NguoiDung nguoidung, BaiThiThu baithithu) {
 	super();
