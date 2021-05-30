@@ -42,7 +42,7 @@
 
 @media ( min-width : 767px) {
 	#navigation {
-		margin-top: 50px;
+		
 		position: fixed;
 	}
 }

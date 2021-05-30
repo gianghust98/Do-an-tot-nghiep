@@ -36,13 +36,14 @@ public class BaiFullTestReadingController {
 	@Autowired
 	private NguoiDungService nguoiDungService;
 	
-	public String socauListeningCorrect ;
+	public String socauListeningCorrect = "0" ;
 	
 	@GetMapping("/doExam/reading")
 	public String ReadingExam(Model model,@RequestParam("idExam") int id) {		
 		try {
 				List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuServie.getBaiThiThu(id).get(0));
 				model.addAttribute("listQuestion",list);
+				model.addAttribute("socauListeningCorrect",socauListeningCorrect);		
 				
 				return "client/fullTestReading";
 				
@@ -55,11 +56,10 @@ public class BaiFullTestReadingController {
 	@RequestMapping(value="/reading/{examId}/{socaudung}",method=RequestMethod.POST)
 	public String DetailReading(Model model,@PathVariable("examId") int id,@RequestBody String[] jsonAnswerUser,@PathVariable("socaudung") String socaudung) {		
 		List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuServie.getBaiThiThu(id).get(0));
+		socauListeningCorrect = socaudung;
 		System.out.println("socauListeningCorrect: "+ socaudung);
 		model.addAttribute("listQuestion",list);
-		model.addAttribute("socauListeningCorrect",socaudung);		
-		//socauListeningCorrect = socaudung;
-		
+		//model.addAttribute("socauListeningCorrect",socaudung);		
 		 return "client/fullTestReading";
 	}
 	

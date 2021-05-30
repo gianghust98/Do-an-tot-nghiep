@@ -246,7 +246,7 @@ function regconizedUserTestReading() {
         });
 
     }
-    setTimeout(take_snapshot, 5000);
+    setTimeout(take_snapshot, 8000);
     setTimeout(take_snapshot, 10000);
 	setTimeout(take_snapshot,15000);
 	setTimeout(take_snapshot, 20000);
@@ -262,6 +262,7 @@ function regconizedUserTestReading() {
 
 window.onload = function () {
     console.log("load reading test");
+	
     //change time here
     //var thirtyMinutes = 0.2 * 30;
     startReadingClock();

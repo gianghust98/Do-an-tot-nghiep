@@ -66,6 +66,7 @@
 
 						}
 						
+						
 						$('#btPic')
 							.click(
 								function(){
@@ -97,6 +98,8 @@
 												});
 																			        
 									        });
+									       
+									       
 								    }
 								    //CONVERT dataURI
 								    function dataURItoBlob(dataURI) {
@@ -121,7 +124,12 @@
 								     
 					
 							});
-
+							$('#btnclose').click(
+								function(){
+								location.reload();
+								}
+							)
+							
 					});
 </script>
 </head>
@@ -263,7 +271,7 @@
 				</c:if>
 				
 				    
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button id="btnclose" type="button" class="btn btn-default" data-dismiss="modal" onclick="reloadPage()" >Close</button>
 
 			</div>
 			 

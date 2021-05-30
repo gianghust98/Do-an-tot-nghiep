@@ -127,6 +127,7 @@ $(document).ready(function(){
 		xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhttp.send(jsonAnswerUser);
+		location.reload();
 
 		// $.ajax({
 		// 	url: "http://localhost:8081/webtoeic/reading/" +examId+ "/" +countCorrect,
@@ -195,6 +196,7 @@ $(document).ready(function(){
 		xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhttp.send(jsonAnswerUser);
+		
 	});
 	
 	
@@ -289,10 +291,6 @@ function regconizedUserTestListening() {
 		setTimeout(take_snapshot, step);
 		step = step + 3000;
 	}
-    // setTimeout(take_snapshot, 4000);
-    // setTimeout(take_snapshot, 8000);
-    // setTimeout(take_snapshot, 15000);
-    //setTimeout(resetWebcam, 17000);
    
 }
 
