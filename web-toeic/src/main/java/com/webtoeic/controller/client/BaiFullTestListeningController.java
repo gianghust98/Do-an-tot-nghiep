@@ -75,44 +75,20 @@ public class BaiFullTestListeningController {
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		return (NguoiDung) request.getSession().getAttribute("loggedInUser");
 	}
+	@GetMapping("/doExam/listening")
+	public String DetailListening(Model model,@RequestParam("idExam") int id) {		
+		try {
+				List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuService.getBaiThiThu(id).get(0));
+				model.addAttribute("listQuestion",list);
+				return "client/fullTestListen";
+				
+		}catch(Exception e) {
+			System.out.println("error:"+e);
+			return "client/error";
+		}		
+	}
 	
-//	@PostMapping("/takePicture/duringTest")
-//	public void beforeTest(ModelMap model,@RequestParam("canvasImage") MultipartFile file,@RequestParam("idExam") int idBaiThi ) throws IOException {
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		NguoiDung nguoiDung = nguoiDungService.findByEmail(auth.getName());
-//		
-//		authUserTest = transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes());
-//		System.out.println("during test: "+ authUserTest);
-//		count = count+1;
-//		if(check.equals(authUserTest)) {
-//			countFalse = countFalse + 1 ;
-//			System.out.println("countFalse: "+ countFalse);
-//		}
-//		
-//		BaiThiThu baithithu = new BaiThiThu();
-//		Integer idBaiThiThu = idBaiThi;
-//		
-//		System.out.println("idBaiThiThu: "+ idBaiThiThu);
-//	
-//		baithithu.setBaithithuid(idBaiThiThu);
-//		
-//		KetQuaBaiTest ketQuaBaiTest = new KetQuaBaiTest();
-//		ketQuaBaiTest.setBaithithu(baithithu);
-//		ketQuaBaiTest.setNguoidung(nguoiDung);
-//		
-//		System.out.println("countFalse2: "+ countFalse);
-//		if(count == 6) {
-//			ketQuaBaiTest.setCount_false(countFalse);
-//			if(countFalse > 2) {
-//				ketQuaBaiTest.setStatus("Rejected");
-//			}else {
-//				ketQuaBaiTest.setStatus("Approve");
-//			}
-//			ketquabaitestService.save(ketQuaBaiTest);
-//			
-//		}
-//		
-		
+	
 
 	@RequestMapping(value="/showResultListening/{examId}/{socaudung}",method=RequestMethod.POST)
 	public String showResult(Model model,@RequestBody String[] jsonAnswerUser,

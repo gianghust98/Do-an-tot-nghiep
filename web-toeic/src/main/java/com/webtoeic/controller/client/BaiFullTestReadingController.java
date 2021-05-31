@@ -1,8 +1,11 @@
 package com.webtoeic.controller.client;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,10 +14,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.webtoeic.entities.CauHoiBaiThiThu;
+import com.webtoeic.entities.KetQuaBaiTest;
+import com.webtoeic.entities.NguoiDung;
 import com.webtoeic.service.BaiThiThuService;
 import com.webtoeic.service.CauHoiBaiThiThuService;
+import com.webtoeic.service.NguoiDungService;
+
+
 
 @Controller
 public class BaiFullTestReadingController {
@@ -24,14 +33,33 @@ public class BaiFullTestReadingController {
 	@Autowired
 	CauHoiBaiThiThuService cauhoibaithithuService;
 	
-	@RequestMapping(value="/reading/{examId}/{socaudung}",method=RequestMethod.POST)
-	public String DetailReading(Model model,@RequestBody String[] jsonAnswerUser,
-			@PathVariable("examId") int id,@PathVariable("socaudung") String socaudung) {
+	@Autowired
+	private NguoiDungService nguoiDungService;
 	
-		
+	public String socauListeningCorrect = "0" ;
+	
+	@GetMapping("/doExam/reading")
+	public String ReadingExam(Model model,@RequestParam("idExam") int id) {		
+		try {
+				List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuServie.getBaiThiThu(id).get(0));
+				model.addAttribute("listQuestion",list);
+				model.addAttribute("socauListeningCorrect",socauListeningCorrect);		
+				
+				return "client/fullTestReading";
+				
+		}catch(Exception e) {
+			System.out.println("error:"+e);
+			return "client/error";
+		}		
+	}
+	
+	@RequestMapping(value="/reading/{examId}/{socaudung}",method=RequestMethod.POST)
+	public String DetailReading(Model model,@PathVariable("examId") int id,@RequestBody String[] jsonAnswerUser,@PathVariable("socaudung") String socaudung) {		
 		List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuServie.getBaiThiThu(id).get(0));
+		socauListeningCorrect = socaudung;
+		System.out.println("socauListeningCorrect: "+ socaudung);
 		model.addAttribute("listQuestion",list);
-		model.addAttribute("socauListeningCorrect",socaudung);
+		//model.addAttribute("socauListeningCorrect",socaudung);		
 		 return "client/fullTestReading";
 	}
 	
@@ -57,5 +85,6 @@ public class BaiFullTestReadingController {
 		
 		return "client/readingResult";
 	}
+	
 
 }

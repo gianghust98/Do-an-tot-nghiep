@@ -90,6 +90,7 @@ function clickSubmitReading(){
 	var examId = document.getElementById('id_bai_exam').value;
 
 	var correctListening = document.getElementById("soCauDungListening").value;
+	console.log('correct listening: ', correctListening);
 	
 	var answerArr = answerUserReading();
 
@@ -101,12 +102,11 @@ function clickSubmitReading(){
 	 if(answerArr[i] == correctArr[i] && answerArr[i] != ' ' ) correctReading++;
 		
 	}
+
 	
-//	console.log("read="+correctReading);
-//	console.log("listen="+correctListening);
-//	console.log("id="+examId);
+	var url = "http://localhost:8081/webtoeic/saveResultUser/" + examId + "/" + correctListening + "/" + correctReading;
 	
-	var url="http://localhost:8081/webtoeic/saveResultUser/"+examId+"/"+correctListening+"/"+correctReading;
+	console.log('correct reading: ', correctReading);
 	
 	if(window.XMLHttpRequest){
 		xhttp = new XMLHttpRequest();
@@ -122,6 +122,7 @@ function clickSubmitReading(){
 			
 			var data = xhttp.responseText;
 			document.getElementById("main").innerHTML = data;
+			console.log('data result: ', data);
 		}
 	}
 	
@@ -223,7 +224,7 @@ function regconizedUserTestReading() {
         image_format: 'jpeg',
         jpeg_quality: 100
     });
-//    Webcam.attach('#cameraReading');
+    Webcam.attach('#cameraReading');
     
 
     take_snapshot = function () {
@@ -231,10 +232,11 @@ function regconizedUserTestReading() {
             var blob = dataURItoBlob(data_uri);
             var fd = new FormData(document.forms[0]);
             fd.append("canvasImage", blob);
-            console.log('reading test...');
+            //console.log('reading test...');
+			var examId = $("#id_bai_exam").val();
 
             $.ajax({
-                url: 'http://localhost:8081/webtoeic/takePicture/duringTest',
+                url: 'http://localhost:8081/webtoeic/takePicture/duringTest?idExam=' + examId,
                 type: 'POST',
                 processData: false,
                 contentType: false,
@@ -244,15 +246,31 @@ function regconizedUserTestReading() {
         });
 
     }
-    setTimeout(take_snapshot, 5000);
+    setTimeout(take_snapshot, 8000);
     setTimeout(take_snapshot, 10000);
-   // setTimeout(resetWebcam, 15000);
+	setTimeout(take_snapshot,15000);
+	setTimeout(take_snapshot, 20000);
+	setTimeout(resetWebcam, 22000);
+
 }
 
 
 
 
 
+
+
+window.onload = function () {
+    console.log("load reading test");
+	
+    //change time here
+    //var thirtyMinutes = 0.2 * 30;
+    startReadingClock();
+    regconizedUserTestReading();
+    
+        
+         
+};
 
 
 //

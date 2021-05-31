@@ -18,6 +18,9 @@ $(document).ready(function() {
 			contentType: false,
 			cache: false,
 			processData: false,
+			success: function(res){
+				alert(res)
+			},
 			error: function (e) {
 				alert("error");
 				console.log("ERROR: ", e);

@@ -62,19 +62,11 @@
 
 							$('#examModal').modal('show');
 							$('#examModal #idExamModal').val(idExam);
+							document.getElementById("url-id-exam").href="/webtoeic/doExam/listening?idExam="+ idExam; 
 
 						}
-
-						$('#btnLamBaiThi')
-								.click(
-										function() {
-											var baseUrl = $('#baseUrl').val();
-											var examId = $('#idExamModal')
-													.val();
-											window.location.href = baseUrl+"/doExam?idExam="
-													+ examId;
-
-										});
+						
+						
 						$('#btPic')
 							.click(
 								function(){
@@ -106,6 +98,8 @@
 												});
 																			        
 									        });
+									       
+									       
 								    }
 								    //CONVERT dataURI
 								    function dataURItoBlob(dataURI) {
@@ -130,7 +124,12 @@
 								     
 					
 							});
-
+							$('#btnclose').click(
+								function(){
+								location.reload();
+								}
+							)
+							
 					});
 </script>
 </head>
@@ -266,12 +265,13 @@
 
 			<div class="modal-footer">
 				<c:if test="${message == 'true'}">
-					<button type="button" class="btn btn-primary" id="btnLamBaiThi">Làm
-						bài thi</button>
+					<button type="button" class="btn btn-primary" id="btnLamBaiThi">
+						<a id="url-id-exam" href="/webtoeic/doExam/listening?idExam=${idExam}">Làm bài thi</a>					
+					</button>
 				</c:if>
 				
 				    
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button id="btnclose" type="button" class="btn btn-default" data-dismiss="modal" onclick="reloadPage()" >Close</button>
 
 			</div>
 			 

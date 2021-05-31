@@ -127,22 +127,22 @@ public class BaiFullTestController {
 		FileUtils.writeByteArrayToFile(new File("pathname.jpg"), file.getBytes());
 		return "redirect:/listExam";
 	}
-	@GetMapping("/doExam")
-	public String DetailListening(Model model,@RequestParam("idExam") int id) {
-		
-		try {
-				List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuService.getBaiThiThu(id).get(0));
-				model.addAttribute("listQuestion",list);
-				return "client/fullTestListen";
-				
-		}catch(Exception e) {
-			System.out.println("error:"+e);
-			return "client/error";
-		}
-		
-		
-		
-	}
+//	@GetMapping("/doExam")
+//	public String DetailListening(Model model,@RequestParam("idExam") int id) {
+//		
+//		try {
+//				List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuService.getBaiThiThu(id).get(0));
+//				model.addAttribute("listQuestion",list);
+//				return "client/fullTestListen";
+//				
+//		}catch(Exception e) {
+//			System.out.println("error:"+e);
+//			return "client/error";
+//		}
+//		
+//		
+//		
+//	}
 	@PostMapping("/takePicture/duringTest")
 	public void beforeTest(ModelMap model,@RequestParam("canvasImage") MultipartFile file,@RequestParam("idExam") int idBaiThi ) throws IOException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -154,7 +154,6 @@ public class BaiFullTestController {
 			System.out.println("countFalse: "+ countFalse);
 		}
 	}
-	
 	
 	
 	@RequestMapping(value="/saveResultUser/{examId}/{correctListening}/{correctReading}",method=RequestMethod.POST)
@@ -186,11 +185,15 @@ public class BaiFullTestController {
 		
 		
 		ketquabaitestService.save(ketquabaitest);
+		
+		
 		model.addAttribute("correctListening",correctListening);
 		model.addAttribute("correctReading",correctReading);
 		model.addAttribute("total",correctReading+ correctListening);
 		model.addAttribute("countFalse", countFalse);
+		
 		model.addAttribute("except",status);
+		countFalse = 0;
 		
 		
 		return "client/resultTestUser";
