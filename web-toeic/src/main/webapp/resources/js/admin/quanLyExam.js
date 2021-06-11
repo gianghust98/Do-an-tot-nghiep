@@ -32,7 +32,7 @@ $(document).ready(function() {
 				data: formData,
 		        
 				type:'POST',
-				url:"http://localhost:8080/webtoeic/api/admin/exam/save",
+				url:"http://localhost:8081/webtoeic/api/admin/exam/save",
 				enctype : 'multipart/form-data',
 			    contentType : false,
 			    cache : false,
@@ -89,7 +89,7 @@ $(document).ready(function() {
 		$.ajax({
 		data: formData,
 		type:'POST',
-		url:"http://localhost:8080/webtoeic/api/admin/exam/update",
+		url:"http://localhost:8081/webtoeic/api/admin/exam/update",
 		enctype : 'multipart/form-data',
 	    contentType : false,
 	    cache : false,
@@ -134,7 +134,7 @@ $(document).ready(function() {
          
           $.ajax({
   			type:'GET',
-  			url:"http://localhost:8080/webtoeic/api/admin/exam/infoExam/"+idBaiThiThu,
+  			url:"http://localhost:8081/webtoeic/api/admin/exam/infoExam/"+idBaiThiThu,
   			success: function(data){
   				 $('#examModal #nameBaiThiThu').val(data);  			
   								},
@@ -165,7 +165,7 @@ $(document).ready(function() {
 				
 				$.ajax({
 					type:'POST',
-					url:"http://localhost:8080/webtoeic/api/admin/exam/delete/"+idBaiThiThu,
+					url:"http://localhost:8081/webtoeic/api/admin/exam/delete/"+idBaiThiThu,
 					
 					success: function(data){
 						loadAllBaiThiThu();
@@ -190,7 +190,7 @@ $(document).ready(function() {
 		$.ajax({
 			dataType : 'json',
 			type:'GET',
-			url:"http://localhost:8080/webtoeic/api/admin/exam/loadExam",
+			url:"http://localhost:8081/webtoeic/api/admin/exam/loadExam",
 			
 			success: function(data){
 				

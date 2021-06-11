@@ -7,7 +7,7 @@ $(document).ready(function(){
 		var baiDocId = $("#baiTapDocId").val();
 		$.ajax({
 			type: "GET",		
-			url: "http://localhost:8080/webtoeic/api/client/bai-doc/baiDocId="+ baiDocId + "?page=" + page,
+			url: "http://localhost:8081/webtoeic/api/client/bai-doc/baiDocId="+ baiDocId + "?page=" + page,
 			success: function(result){
 				soCau = result.totalElements;
 				console.log('vao day ')
@@ -130,7 +130,7 @@ $(document).ready(function(){
 		var baiDocId = $("#baiTapDocId").val();
 		$.ajax({
 			type: "GET",		
-			url: "http://localhost:8080/webtoeic/api/client/bai-doc/baiDocId="+ baiDocId + "?page=" + page,
+			url: "http://localhost:8081/webtoeic/api/client/bai-doc/baiDocId="+ baiDocId + "?page=" + page,
 			success: function(result){
 //				soCau = result.totalElements;
 				$.each(result.content, function(i, cauHoi){
