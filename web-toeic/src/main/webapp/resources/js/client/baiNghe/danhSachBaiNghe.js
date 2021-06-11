@@ -5,7 +5,7 @@ $(document).ready(function(){
 		var part = $("#partSearch").val();
 		$.ajax({
 			type: "GET",		
-			url: "http://localhost:8080/webtoeic/api/client/bai-nghe/all" + "?page=" + page + "&doKho=" + doKho + "&part=" + part,
+			url: "http://localhost:8081/webtoeic/api/client/bai-nghe/all" + "?page=" + page + "&doKho=" + doKho + "&part=" + part,
 			success: function(result){
 				if(result.totalElements > 0){
 					$("#pTag").removeClass().addClass("hidden");

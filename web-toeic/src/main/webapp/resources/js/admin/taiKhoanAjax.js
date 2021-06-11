@@ -9,7 +9,7 @@ $(document).ready(function() {
 			type: "GET",	
 			data: data,
 			contentType : "application/json",
-			url: "http://localhost:8080/webtoeic/api/admin/tai-khoan/all" + '?page=' + page,
+			url: "http://localhost:8081/webtoeic/api/admin/tai-khoan/all" + '?page=' + page,
 			success: function(result){
 				$.each(result.content, function(i, taiKhoan){
 					var taiKhoanRow = '<tr>' +
@@ -81,7 +81,7 @@ $(document).ready(function() {
      		async:false,
  			type : "POST",
  			contentType : "application/json",
- 			url : "http://localhost:8080/webtoeic/api/admin/tai-khoan/save",
+ 			url : "http://localhost:8081/webtoeic/api/admin/tai-khoan/save",
  			enctype: 'multipart/form-data',
  			data : data,      
  			success : function(response) {
@@ -113,7 +113,7 @@ $(document).ready(function() {
 		if(confirmation){
 		  $.ajax({
 			  type : "DELETE",
-			  url : "http://localhost:8080/webtoeic/api/admin/tai-khoan/delete/" + taiKhoanId,
+			  url : "http://localhost:8081/webtoeic/api/admin/tai-khoan/delete/" + taiKhoanId,
 			  success: function(resultMsg){
 				  alert("Xóa thành công")
 				  resetData();

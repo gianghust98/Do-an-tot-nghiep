@@ -7,7 +7,7 @@ $(document).ready(function(){
 		var baiNgheId = $("#baiTapNgheId").val();
 		$.ajax({
 			type: "GET",		
-			url: "http://localhost:8080/webtoeic/api/client/bai-nghe/baiNgheId="+ baiNgheId + "?page=" + page,
+			url: "http://localhost:8081/webtoeic/api/client/bai-nghe/baiNgheId="+ baiNgheId + "?page=" + page,
 			success: function(result){
 				soCau = result.totalElements;
 				$.each(result.content, function(i, cauHoi){
@@ -127,7 +127,7 @@ $(document).ready(function(){
 		var baiNgheId = $("#baiTapNgheId").val();
 		$.ajax({
 			type: "GET",		
-			url: "http://localhost:8080/webtoeic/api/client/bai-nghe/baiNgheId="+ baiNgheId + "?page=" + page,
+			url: "http://localhost:8081/webtoeic/api/client/bai-nghe/baiNgheId="+ baiNgheId + "?page=" + page,
 			success: function(result){
 //				soCau = result.totalElements;
 				$.each(result.content, function(i, cauHoi){

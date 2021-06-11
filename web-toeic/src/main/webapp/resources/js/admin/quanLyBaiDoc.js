@@ -9,7 +9,7 @@ $(document).ready(function(){
 		var part = $("#partSearch").val();
 		$.ajax({
 			type: "GET",		
-			url: "http://localhost:8080/webtoeic/api/admin/bai-doc/all" + "?page=" + page + "&doKho=" + doKho + "&part=" + part,
+			url: "http://localhost:8081/webtoeic/api/admin/bai-doc/all" + "?page=" + page + "&doKho=" + doKho + "&part=" + part,
 			success: function(result){
 				$.each(result.content, function(i, baiDoc){
 //					console.log(baiDoc);
@@ -78,7 +78,7 @@ $(document).ready(function(){
 		var baiDocId = $(this).parent().find('input').val();
 		$('#formBaiDoc').removeClass().addClass("updateForm");
 		$('#formBaiDoc #btnSubmit').removeClass().addClass("btn btn-primary btnUpdateForm");
-		var href = "http://localhost:8080/webtoeic/api/admin/bai-doc/"+baiDocId;
+		var href = "http://localhost:8081/webtoeic/api/admin/bai-doc/"+baiDocId;
 		$.get(href, function(baiDoc) {
             console.log(baiDoc);
             $('#id').val(baiDoc.id);
@@ -86,9 +86,9 @@ $(document).ready(function(){
             $('#doKho').val(baiDoc.doKho);
             $('#phanThi').val(baiDoc.part);
             $('#script').val(baiDoc.script);
-            $("img").attr("src", "http://localhost:8080/webtoeic/file/images/baiDocId="+ baiDoc.id+".png");
+            $("img").attr("src", "http://localhost:8081/webtoeic/file/images/baiDocId="+ baiDoc.id+".png");
             $("#previewImage").removeClass("hidden");
-            $("#linkExcel").attr("href", "http://localhost:8080/webtoeic/file/excel/baiDocId="+ baiDoc.id+".xlsx");
+            $("#linkExcel").attr("href", "http://localhost:8081/webtoeic/file/excel/baiDocId="+ baiDoc.id+".xlsx");
             $("#linkExcel").removeClass("hidden");           
 		});	
 		$('#baiDocModal').modal();
@@ -110,7 +110,7 @@ $(document).ready(function(){
 		if(confirmation){
 		  $.ajax({
 			  type : "DELETE",
-			  url : "http://localhost:8080/webtoeic/api/admin/bai-doc/delete/" + baiDocId,
+			  url : "http://localhost:8081/webtoeic/api/admin/bai-doc/delete/" + baiDocId,
 			  success: function(resultMsg){
 				 resetDataForDelete();
 				 alert("Xóa thành công");
@@ -259,7 +259,7 @@ $(document).ready(function(){
      		    async:false,
     			type : "POST",
     			contentType : "application/json",
-    			url : "http://localhost:8080/webtoeic/api/admin/bai-doc/save",
+    			url : "http://localhost:8081/webtoeic/api/admin/bai-doc/save",
     			enctype: 'multipart/form-data',
     			data : formData,    			
     		    // prevent jQuery from automatically transforming the data into a
@@ -288,7 +288,7 @@ $(document).ready(function(){
 			async : false,
 			type : "POST",
 			contentType : "application/json",
-			url : "http://localhost:8080/webtoeic/api/admin/bai-doc/update/" + id,
+			url : "http://localhost:8081/webtoeic/api/admin/bai-doc/update/" + id,
 			enctype : 'multipart/form-data',
 			data : formData,
 			// prevent jQuery from automatically transforming the data into a

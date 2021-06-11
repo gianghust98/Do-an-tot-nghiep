@@ -10,7 +10,7 @@ $(document).ready(function() {
 		var part = $("#partSearch").val();
 		$.ajax({
 			type : "GET",
-			url : "http://localhost:8080/webtoeic/api/admin/bai-nghe/all" + "?page=" + page + "&doKho=" + doKho + "&part=" + part,
+			url : "http://localhost:8081/webtoeic/api/admin/bai-nghe/all" + "?page=" + page + "&doKho=" + doKho + "&part=" + part,
 			success : function(result) {
 				$.each(result.content, function(i, baiNghe) {
 					// console.log(baiNghe);
@@ -79,7 +79,7 @@ $(document).ready(function() {
 		var baiNgheId = $(this).parent().find('input').val();
 		$('#formBaiNghe').removeClass().addClass("updateForm");
 		$('#formBaiNghe #btnSubmit').removeClass().addClass("btn btn-primary btnUpdateForm");
-		var href = "http://localhost:8080/webtoeic/api/admin/bai-nghe/"+baiNgheId;
+		var href = "http://localhost:8081/webtoeic/api/admin/bai-nghe/"+baiNgheId;
 		$.get(href, function(baiNghe) {
             console.log(baiNghe);
             $('#id').val(baiNghe.id);
@@ -88,12 +88,12 @@ $(document).ready(function() {
             $('#phanThi').val(baiNghe.part);
             $('#script').val(baiNghe.script);
             
-//            $('#photoBaiNghe').val("http://localhost:8080/webtoeic/file/images/baiNgheId="+ baiNghe.id+".png");
-            $("img").attr("src", "http://localhost:8080/webtoeic/file/images/baiNgheId="+ baiNghe.id+".png");
+//            $('#photoBaiNghe').val("http://localhost:8081/webtoeic/file/images/baiNgheId="+ baiNghe.id+".png");
+            $("img").attr("src", "http://localhost:8081/webtoeic/file/images/baiNgheId="+ baiNghe.id+".png");
             $("#previewImage").removeClass("hidden");
-            $("#previewAudio").attr("src", "http://localhost:8080/webtoeic/file/audio/baiNgheId="+ baiNghe.id+".mp3");
+            $("#previewAudio").attr("src", "http://localhost:8081/webtoeic/file/audio/baiNgheId="+ baiNghe.id+".mp3");
             $("#previewAudio").removeClass("hidden");
-            $("#linkExcel").attr("href", "http://localhost:8080/webtoeic/file/excel/baiNgheId="+ baiNghe.id+".xlsx");
+            $("#linkExcel").attr("href", "http://localhost:8081/webtoeic/file/excel/baiNgheId="+ baiNghe.id+".xlsx");
             $("#linkExcel").removeClass("hidden");           
 		});	
 		$('#baiNgheModal').modal();
@@ -114,7 +114,7 @@ $(document).ready(function() {
 		if (confirmation) {
 			$.ajax({
 				type : "DELETE",
-				url : "http://localhost:8080/webtoeic/api/admin/bai-nghe/delete/" + baiNgheId,
+				url : "http://localhost:8081/webtoeic/api/admin/bai-nghe/delete/" + baiNgheId,
 				success : function(resultMsg) {
 					resetDataForDelete();
 					alert("Xóa thành công");
@@ -307,7 +307,7 @@ $(document).ready(function() {
 			async : false,
 			type : "POST",
 			contentType : "application/json",
-			url : "http://localhost:8080/webtoeic/api/admin/bai-nghe/save",
+			url : "http://localhost:8081/webtoeic/api/admin/bai-nghe/save",
 			enctype : 'multipart/form-data',
 			data : formData,
 			// prevent jQuery from automatically transforming the data into a
@@ -335,7 +335,7 @@ $(document).ready(function() {
 			async : false,
 			type : "POST",
 			contentType : "application/json",
-			url : "http://localhost:8080/webtoeic/api/admin/bai-nghe/update/" + id,
+			url : "http://localhost:8081/webtoeic/api/admin/bai-nghe/update/" + id,
 			enctype : 'multipart/form-data',
 			data : formData,
 			// prevent jQuery from automatically transforming the data into a

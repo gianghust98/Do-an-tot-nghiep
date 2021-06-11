@@ -32,7 +32,7 @@ $(document).ready(function() {
 				data: formData,
 		        
 				type:'POST',
-				url:"http://localhost:8080/webtoeic/api/admin/vocab/save",
+				url:"http://localhost:8081/webtoeic/api/admin/vocab/save",
 				enctype : 'multipart/form-data',
 			    contentType : false,
 			    cache : false,
@@ -85,7 +85,7 @@ $(document).ready(function() {
 		$.ajax({
 		data: formData,
 		type:'POST',
-		url:"http://localhost:8080/webtoeic/api/admin/vocab/update",
+		url:"http://localhost:8081/webtoeic/api/admin/vocab/update",
 		enctype : 'multipart/form-data',
 	    contentType : false,
 	    cache : false,
@@ -131,7 +131,7 @@ $(document).ready(function() {
          
           $.ajax({
   			type:'GET',
-  			url:"http://localhost:8080/webtoeic/api/admin/vocab/infoVocab/"+idBaiVocab,
+  			url:"http://localhost:8081/webtoeic/api/admin/vocab/infoVocab/"+idBaiVocab,
   			success: function(data){
   				 $('#vocabModal #vocab_name').val(data);  			
   								},
@@ -160,7 +160,7 @@ $(document).ready(function() {
 			{
 				$.ajax({
 					type:'POST',
-					url:"http://localhost:8080/webtoeic/api/admin/vocab/delete/"+idBaiVocab,
+					url:"http://localhost:8081/webtoeic/api/admin/vocab/delete/"+idBaiVocab,
 					
 					success: function(data){
 						loadAllVocab();
@@ -185,7 +185,7 @@ $(document).ready(function() {
 		$.ajax({
 			dataType : 'json',
 			type:'GET',
-			url:"http://localhost:8080/webtoeic/api/admin/vocab/loadVocab",
+			url:"http://localhost:8081/webtoeic/api/admin/vocab/loadVocab",
 			
 			success: function(data){
 				
