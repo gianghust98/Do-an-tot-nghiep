@@ -41,6 +41,17 @@
 	width: 250px;
 	margin-bottom: 25px;
 }
+
+#btPic{
+	margin-left: 230px;
+	background-color: red;
+	color: white;
+	margin-bottom: 10px;
+}
+#url-id-exam{
+	color: white;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -72,8 +83,8 @@
 								function(){
 									// CAMERA SETTINGS.
 									    Webcam.set({
-									        width: 280,
-									        height: 280,
+									        width: 300,
+									        height: 300,
 									        image_format: 'jpeg',
 									        jpeg_quality: 100
 									    });
@@ -268,6 +279,9 @@
 					<button type="button" class="btn btn-primary" id="btnLamBaiThi">
 						<a id="url-id-exam" href="/webtoeic/doExam/listening?idExam=${idExam}">Làm bài thi</a>					
 					</button>
+					<%
+					session.removeAttribute("message");
+					%>
 				</c:if>
 				
 				    
@@ -276,7 +290,7 @@
 			</div>
 			 
 			<input type="button" value="Take a Snap " id="btPic" onclick="takeSnapShot()" />
-			<div id="camera" style="height:auto;width:auto; text-align:center;"></div>
+			<div id="camera" style="height:auto;width:auto; margin-left: 130px;"></div>
 			 
 		</div>
 	</div>

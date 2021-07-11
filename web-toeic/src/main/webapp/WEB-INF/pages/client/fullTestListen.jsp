@@ -78,6 +78,7 @@
 #btnSubmit {
 	margin-bottom: 15px;
 	margin-left: 15px;
+	color: white;
 }
 
 #btnResult {
@@ -90,7 +91,9 @@
 	margin-bottom: 15px;
 	margin-left: 40px;
 }
-
+#url-id-exam-reading{
+	color: white;
+}
 .web-font {
 	font-size: 15px;
 	font-family: 'Arial';

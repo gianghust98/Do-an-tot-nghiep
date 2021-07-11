@@ -1,0 +1,6 @@
+2021-07-09 11:03:36.295  INFO 16024 --- [nio-8081-exec-1] o.a.c.c.C.[.[localhost].[/webtoeic]      : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2021-07-09 11:03:36.296  INFO 16024 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2021-07-09 11:03:36.314  INFO 16024 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 18 ms
+2021-07-09 12:34:43.621  WARN 16024 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=35m45s590ms535µs200ns).
+2021-07-09 14:13:43.512  WARN 16024 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=52m28s69ms951µs300ns).
+2021-07-09 15:39:59.331  WARN 16024 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h16m45s653ms342µs500ns).

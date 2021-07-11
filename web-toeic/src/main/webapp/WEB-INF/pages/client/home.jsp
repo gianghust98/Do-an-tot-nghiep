@@ -88,8 +88,8 @@
 
 							<div class="span6">
 								<img
-									src="${pageContext.request.contextPath}/resources/file/images/slide/aaa.jpg"
-									alt="img not found aab" />
+									src="${pageContext.request.contextPath}/resources/file/images/slide/slide3.jpg"
+									alt="img not found" />
 							</div>
 						</div>
 					</div>

@@ -124,7 +124,8 @@ public class BaiFullTestController {
 		
 		//System.out.println(transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes()));
 		authUser = transferClient.imgAuth(nguoiDung.getEmail(),file.getBytes());
-		FileUtils.writeByteArrayToFile(new File("pathname.jpg"), file.getBytes());
+		
+//		FileUtils.writeByteArrayToFile(new File("pathname.jpg"), file.getBytes());
 		return "redirect:/listExam";
 	}
 //	@GetMapping("/doExam")

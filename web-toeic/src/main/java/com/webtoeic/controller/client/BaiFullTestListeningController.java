@@ -4,6 +4,7 @@ import java.io.File;
 
 import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -78,6 +79,10 @@ public class BaiFullTestListeningController {
 	@GetMapping("/doExam/listening")
 	public String DetailListening(Model model,@RequestParam("idExam") int id) {		
 		try {
+				System.out.println("listening test begins!");
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+			    Date date = new Date();  
+			    System.out.println(formatter.format(date));  
 				List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuService.getBaiThiThu(id).get(0));
 				model.addAttribute("listQuestion",list);
 				return "client/fullTestListen";
@@ -103,17 +108,7 @@ public class BaiFullTestListeningController {
 		 list.get(i).setDapAnUser(jsonAnswerUser[i]);
 		
      }
-	 
-	// save so cau dung vao db
-//	 	Date time = new Date();
-//		KetQuaBaiTest ketquabaitest = new KetQuaBaiTest();
-//		ketquabaitest.setNgaythi(time);
-//		ketquabaitest.setBaithithu(baithithuService.getBaiThiThu(examId).get(0));
-//		ketquabaitest.setCorrectlisten(socaudung);
-//		ketquabaitest.setNguoidung(currentUser);
-//		
-//		ketquabaitestService.save(ketquabaitest);
-	 
+
 	 model.addAttribute("socaudung",socaudung);
 	 model.addAttribute("listQuestion",list);
 		

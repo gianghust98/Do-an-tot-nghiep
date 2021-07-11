@@ -1,5 +1,9 @@
 package com.webtoeic;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +24,12 @@ public class WebToeicApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WebToeicApplication.class, args);
+		try {
+			PrintStream o = new PrintStream(new File("output.txt"));
+			System.setOut(o);
+		} catch (FileNotFoundException e) {			
+			e.printStackTrace();
+		}
 	}
 
 	@ModelAttribute("loggedInUser")

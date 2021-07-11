@@ -112,6 +112,7 @@
 					Home</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 				&nbsp <span>Bài test Reading</span> <input class="hidden"
 					id="soCauDungListening" value="${socauListeningCorrect}">
+					<p>${socauListeningCorrect}</p>
 
 			</p>
 		</div>
@@ -121,10 +122,9 @@
 	
 	<div id="resutlTest">
 		
-		<div id="content" class="container-fluid fill ">
-			
+		<div id="content" class="container-fluid fill ">			
 			<div id="cameraReading" style="height:auto;width:auto; text-align:left;"></div>
-			<h4> listening correct: ${socauListeningCorrect} </h4>
+			
 			<form id="submitForm" name="submitForm">
 				<div class="row">
 					<div id="navigation" class="col-md-3">
@@ -159,6 +159,7 @@
 					</div>
 
 					<!--Nội dung bài test -->
+					
 					<div id="main" class="col-md-8 web-font">
 						<c:forEach items="${listQuestion}" var="list">
 							<input class="hidden" id="id_bai_exam"

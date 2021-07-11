@@ -41,6 +41,7 @@ public class BaiFullTestReadingController {
 	@GetMapping("/doExam/reading")
 	public String ReadingExam(Model model,@RequestParam("idExam") int id) {		
 		try {
+				System.out.println("reading test begins!");
 				List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuServie.getBaiThiThu(id).get(0));
 				model.addAttribute("listQuestion",list);
 				model.addAttribute("socauListeningCorrect",socauListeningCorrect);		
