@@ -104,6 +104,7 @@
 
 	<!--Header
 ==========================-->
+<div id="test">
 	<div class="navbar navbar-default navbar-fixed-top">
 
 		<br>
@@ -113,7 +114,8 @@
 					Home</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 				&nbsp <span>Bài test Reading</span> <input class="hidden"
 					id="soCauDungListening" value="${socauListeningCorrect}">
-					<p>${socauListeningCorrect}</p>
+					<input class="hidden" id="countLeaveL" value="${countLeaveListening}">
+					<p>${socauListeningCorrect} and ${countLeaveListening}</p>
 
 			</p>
 		</div>
@@ -272,6 +274,7 @@
 				</div>
 			</form>
 		</div>
+	</div>
 
 
 
@@ -300,7 +303,7 @@
 
 		<!--/.Footer-->
 
-	</div>
+</div>
 
 </body>
 </html>

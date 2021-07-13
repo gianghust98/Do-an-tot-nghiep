@@ -98,7 +98,9 @@ public class BaiFullTestListeningController {
 	@RequestMapping(value="/showResultListening/{examId}/{socaudung}",method=RequestMethod.POST)
 	public String showResult(Model model,@RequestBody String[] jsonAnswerUser,
 							@PathVariable("examId") int examId,
-							@PathVariable("socaudung") String socaudung) {
+							@PathVariable("socaudung") String socaudung)
+							
+	{
 	
 	List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuServie.getBaiThiThu(examId).get(0));
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -111,7 +113,7 @@ public class BaiFullTestListeningController {
 
 	 model.addAttribute("socaudung",socaudung);
 	 model.addAttribute("listQuestion",list);
-		
+	
 		return "client/listeningResult";
 	}
 	

@@ -37,6 +37,7 @@ public class BaiFullTestReadingController {
 	private NguoiDungService nguoiDungService;
 	
 	public String socauListeningCorrect = "0" ;
+	public String countLeaveL = "0";
 	
 	@GetMapping("/doExam/reading")
 	public String ReadingExam(Model model,@RequestParam("idExam") int id) {		
@@ -45,7 +46,7 @@ public class BaiFullTestReadingController {
 				List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuServie.getBaiThiThu(id).get(0));
 				model.addAttribute("listQuestion",list);
 				model.addAttribute("socauListeningCorrect",socauListeningCorrect);		
-				
+				model.addAttribute("countLeaveListening",countLeaveL);	
 				return "client/fullTestReading";
 				
 		}catch(Exception e) {
@@ -54,13 +55,16 @@ public class BaiFullTestReadingController {
 		}		
 	}
 	
-	@RequestMapping(value="/reading/{examId}/{socaudung}",method=RequestMethod.POST)
-	public String DetailReading(Model model,@PathVariable("examId") int id,@RequestBody String[] jsonAnswerUser,@PathVariable("socaudung") String socaudung) {		
+	@RequestMapping(value="/reading/{examId}/{socaudung}/{countMouseLeaveL}",method=RequestMethod.POST)
+	public String DetailReading(Model model,@PathVariable("examId") int id,@RequestBody String[] jsonAnswerUser,
+			@PathVariable("socaudung") String socaudung,@PathVariable("countMouseLeaveL") String countMouseLeaveL) {		
 		List<CauHoiBaiThiThu> list = cauhoibaithithuService.getListCauHoi(baithithuServie.getBaiThiThu(id).get(0));
 		socauListeningCorrect = socaudung;
+		countLeaveL = countMouseLeaveL;
 		System.out.println("socauListeningCorrect: "+ socaudung);
+		System.out.println("countLeaveL: "+ countLeaveL);
 		model.addAttribute("listQuestion",list);
-		//model.addAttribute("socauListeningCorrect",socaudung);		
+//		model.addAttribute("socauListeningCorrect",socaudung);		
 		 return "client/fullTestReading";
 	}
 	
@@ -75,15 +79,12 @@ public class BaiFullTestReadingController {
 	 for (int i = 0;i<50;i++) {
 		 list.get(i+50).setDapAnUser(jsonAnswerUser[i]);
      }
-	
-	
-	 
+		 
 	model.addAttribute("listQuestion",list);
 	model.addAttribute("socaudung",socaudung);
-	model.addAttribute("socauListeningCorrect",socaudung);
+//	model.addAttribute("socauListeningCorrect",socaudung);
 
-		
-		
+			
 		return "client/readingResult";
 	}
 	

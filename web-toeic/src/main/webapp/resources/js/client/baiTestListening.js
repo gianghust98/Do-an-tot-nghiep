@@ -46,7 +46,7 @@ function answerUser(){
 
 
 
-let countMouseLeave = 0;
+let countMouseLeaveL = 0;
 
 $(document).ready(function(){
 
@@ -71,7 +71,7 @@ $(document).ready(function(){
 		var jsonAnswerUser = JSON.stringify(answerArr);
 		console.log('count correct: ',countCorrect);	
 		
-		var url="http://localhost:8081/webtoeic/reading/"+examId+"/"+countCorrect;
+		var url="http://localhost:8081/webtoeic/reading/"+examId+"/"+countCorrect+"/"+countMouseLeaveL;
 		
 		if(window.XMLHttpRequest){
 			xhttp = new XMLHttpRequest();
@@ -96,6 +96,7 @@ $(document).ready(function(){
 		xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhttp.send(jsonAnswerUser);
+		countMouseLeaveL = 0;
 		location.reload();
 
 		// $.ajax({
@@ -140,7 +141,7 @@ $(document).ready(function(){
 		//console.log("answerARR="+answerArr);
 		//console.log("correctArr="+correctArr);
 		//console.log("correctCount="+countCorrect);
-		console.log('mouse leave: ',countMouseLeave);
+		console.log('mouse leave: ',countMouseLeaveL);
 
 		
 		
@@ -275,7 +276,7 @@ $(document).ready(function(){
 			regconizedUserTestListening();
 			$( "#testReading" ).mouseleave(function() {
 				alert("Dont leave the scope of exam!");
-				countMouseLeave +=1;
+				countMouseLeaveL +=1;
 			});
 			
 			

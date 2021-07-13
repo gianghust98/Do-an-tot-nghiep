@@ -58,6 +58,7 @@ public class BaiFullTestController {
 	public String check = "false";
 	public String authUser;
 	public String status;
+
 	
 	@ModelAttribute("loggedInUser")
 	public NguoiDung getSessionUser(HttpServletRequest request) {
@@ -157,16 +158,18 @@ public class BaiFullTestController {
 	}
 	
 	
-	@RequestMapping(value="/saveResultUser/{examId}/{correctListening}/{correctReading}",method=RequestMethod.POST)
+	@RequestMapping(value="/saveResultUser/{examId}/{correctListening}/{correctReading}/{countMouseLeaveL}/{countMouseLeaveR}",method=RequestMethod.POST)
 	public String showResultUser(Model model,@PathVariable("correctListening") int correctListening,
 											@PathVariable("correctReading") int correctReading,
+											@PathVariable("countMouseLeaveL") int countMouseLeaveL,
+											@PathVariable("countMouseLeaveR") int countMouseLeaveR,
 											@PathVariable("examId") int examId) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		NguoiDung currentUser = nguoiDungService.findByEmail(auth.getName());
 		
 	 	Date time = new Date();
-	 	
+	 	System.out.println("countLeave: "+ countMouseLeaveL +" "+ countMouseLeaveR );
 		KetQuaBaiTest ketquabaitest = new KetQuaBaiTest();
 		ketquabaitest.setNgaythi(time);
 		ketquabaitest.setBaithithu(baithithuService.getBaiThiThu(examId).get(0));
@@ -175,8 +178,8 @@ public class BaiFullTestController {
 		ketquabaitest.setSocaudung(correctListening+correctReading);
 		ketquabaitest.setSocausai(100-correctListening-correctReading);
 		ketquabaitest.setNguoidung(currentUser);
-		ketquabaitest.setCount_false(countFalse);
-		if(countFalse > 2) {
+		ketquabaitest.setCount_false(countFalse + countMouseLeaveL + countMouseLeaveR);
+		if((countFalse+ countMouseLeaveL+ countMouseLeaveR) > 3) {
 			ketquabaitest.setStatus("Rejected");
 			status = "Không chấp nhận!";
 		}else {
@@ -191,10 +194,11 @@ public class BaiFullTestController {
 		model.addAttribute("correctListening",correctListening);
 		model.addAttribute("correctReading",correctReading);
 		model.addAttribute("total",correctReading+ correctListening);
-		model.addAttribute("countFalse", countFalse);
+		model.addAttribute("countFalse", countFalse+ countMouseLeaveL + countMouseLeaveR);
 		
 		model.addAttribute("except",status);
 		countFalse = 0;
+		
 		
 		
 		return "client/resultTestUser";

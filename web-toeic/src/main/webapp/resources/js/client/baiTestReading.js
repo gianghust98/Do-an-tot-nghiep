@@ -80,7 +80,8 @@ function startTimerReading(duration, display) {
    
   
 
-   
+ let countMouseLeaveR = 0;
+ let countMouseLeave = 0; 
 
 // ket qua test( Listening + Reading)
 function clickSubmitReading(){
@@ -90,6 +91,9 @@ function clickSubmitReading(){
 	var examId = document.getElementById('id_bai_exam').value;
 
 	var correctListening = document.getElementById("soCauDungListening").value;
+	var countMouseLeaveL = document.getElementById("countLeaveL").value;
+	// countMouseLeave = countMouseLeaveL + countMouseLeaveR;
+	
 	console.log('correct listening: ', correctListening);
 	
 	var answerArr = answerUserReading();
@@ -104,7 +108,7 @@ function clickSubmitReading(){
 	}
 
 	
-	var url = "http://localhost:8081/webtoeic/saveResultUser/" + examId + "/" + correctListening + "/" + correctReading;
+	var url = "http://localhost:8081/webtoeic/saveResultUser/" + examId + "/" + correctListening + "/" + correctReading + "/"+ countMouseLeaveL + "/" +countMouseLeaveR  ;
 	
 	console.log('correct reading: ', correctReading);
 	
@@ -132,6 +136,8 @@ function clickSubmitReading(){
 	xhttp.send();
 	
 	clearInterval(timecheckReading);
+	countMouseLeave = 0;
+	countMouseLeaveR = 0;
 	document.getElementById("btnSubmitReading").style.display='none';
 	document.getElementById("btnResultReading").style.display='none';
 	document.getElementById("noteReading").style.display='none';
@@ -250,12 +256,10 @@ function regconizedUserTestReading() {
     setTimeout(take_snapshot, 10000);
 	setTimeout(take_snapshot,15000);
 	setTimeout(take_snapshot, 20000);
-	setTimeout(resetWebcam, 22000);
+	setTimeout(take_snapshot, 25000);
+	// setTimeout(resetWebcam, 22000);
 
 }
-
-
-
 
 
 
@@ -267,7 +271,10 @@ window.onload = function () {
     //var thirtyMinutes = 0.2 * 30;
     startReadingClock();
     regconizedUserTestReading();
-    
+	$( "#test" ).mouseleave(function() {
+		alert("You've just leaved the exam!");
+		countMouseLeaveR +=1;
+	});
         
          
 };
