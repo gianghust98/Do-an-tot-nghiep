@@ -297,7 +297,7 @@ window.onload = function () {
 //		
 //		var examId = $("#id_bai_exam").val();
 //		
-//		var url="http://localhost:8080/webtoeic/showResultReading/"+examId;
+//		var url="http://localhost:8081/webtoeic/showResultReading/"+examId;
 //		if(window.XMLHttpRequest){
 //			xhttp = new XMLHttpRequest();
 //		}

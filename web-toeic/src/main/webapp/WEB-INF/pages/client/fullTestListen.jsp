@@ -49,6 +49,7 @@
 
 .fix-scrolling {
 	max-height: 450px;
+	/* margin-top: 45px; */
 	/*overflow-y: scroll;*/
 }
 
@@ -98,6 +99,8 @@
 	font-size: 15px;
 	font-family: 'Arial';
 }
+
+
 </style>
 
 <script type="text/javascript">
@@ -129,10 +132,9 @@
 
 
 		</div>
-
-
+		
 		<!--/End Header-->
-		<div id="camera2" style="height:auto;width:auto; text-align:left;"></div>
+		<div id="camera2" style="height:auto;width:auto;"></div>
 
 		<div id="content" class="container-fluid fill">
 			<form id="submitForm" name="submitForm">

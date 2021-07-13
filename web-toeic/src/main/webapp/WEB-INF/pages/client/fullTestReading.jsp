@@ -48,6 +48,7 @@
 
 .fix-scrolling {
 	max-height: 450px;
+	/* margin-top: 75px; */
 	/*overflow-y: scroll;*/
 }
 
@@ -123,7 +124,7 @@
 	<div id="resutlTest">
 		
 		<div id="content" class="container-fluid fill ">			
-			<div id="cameraReading" style="height:auto;width:auto; text-align:left;"></div>
+			<div id="cameraReading" style="height:auto;width:auto;"></div>
 			
 			<form id="submitForm" name="submitForm">
 				<div class="row">

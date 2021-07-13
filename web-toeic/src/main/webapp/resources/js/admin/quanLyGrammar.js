@@ -23,7 +23,7 @@ $(document).ready(function() {
 		$.ajax({
 			dataType : 'json',
 			type:'GET',
-			url:"http://localhost:8080/webtoeic/api/admin/grammar/loadGrammar",
+			url:"http://localhost:8081/webtoeic/api/admin/grammar/loadGrammar",
 			
 			success: function(data){
 				
@@ -101,7 +101,7 @@ $(document).ready(function() {
 		$.ajax({
 				data: formData,
 				type:'POST',
-				url:"http://localhost:8080/webtoeic/api/admin/grammar/save",
+				url:"http://localhost:8081/webtoeic/api/admin/grammar/save",
 				enctype : 'multipart/form-data',
 			    contentType : false,
 			    cache : false,
@@ -133,7 +133,7 @@ $(document).ready(function() {
 			{
 				$.ajax({
 					type:'POST',
-					url:"http://localhost:8080/webtoeic/api/admin/grammar/delete/"+idBaiGrammar,
+					url:"http://localhost:8081/webtoeic/api/admin/grammar/delete/"+idBaiGrammar,
 					success: function(data){
 						loadAllGrammar();
 						$('#info-success').text("Xóa bài grammar thành công");
@@ -156,7 +156,7 @@ $(document).ready(function() {
 	
 		$.ajax({
 			type:'GET',
-			url:"http://localhost:8080/webtoeic/api/admin/grammar/infoGrammar/"+idBaiGrammar,
+			url:"http://localhost:8081/webtoeic/api/admin/grammar/infoGrammar/"+idBaiGrammar,
 			success: function(data){
 			
 				var jsonObject = new Object();
@@ -230,7 +230,7 @@ $(document).ready(function() {
 			$.ajax({
 				data: formData,
 				type:'POST',
-				url:"http://localhost:8080/webtoeic/api/admin/grammar/update",
+				url:"http://localhost:8081/webtoeic/api/admin/grammar/update",
 				enctype : 'multipart/form-data',
 			    contentType : false,
 			    cache : false,

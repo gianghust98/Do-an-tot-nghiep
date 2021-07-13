@@ -16,6 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -200,11 +201,12 @@ public class BaiThiThuApi {
 				if (row.getCell(0) != null)
 					cauhoiexam.setNumber((int) row.getCell(0).getNumericCellValue());
 
-				if (row.getCell(1) != null)
+				if (!ObjectUtils.isEmpty(row.getCell(1).getStringCellValue().toString()))
 					cauhoiexam.setImage(
 							baithithu.getBaithithuid() + "." + row.getCell(1).getStringCellValue().toString());
 
-				if (row.getCell(2) != null)
+				
+				if (!ObjectUtils.isEmpty(row.getCell(2).getStringCellValue().toString()))
 					cauhoiexam.setAudiomp3(
 							baithithu.getBaithithuid() + "." + row.getCell(2).getStringCellValue().toString());
 
