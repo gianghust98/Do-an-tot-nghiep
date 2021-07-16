@@ -266,6 +266,51 @@ $(document).ready(function(){
 	
 
 
+	// var ignoreClickOnMeElement = document.getElementById("testReading");
+	// document.addEventListener("click", function(evt) {
+	// 	var flyoutElement = document.getElementById('testReading'),
+	// 		targetElement = evt.target;  // clicked element
+	
+	// 	// do {
+	// 	// 	if (targetElement == flyoutElement) {
+	// 	// 		// This is a click inside. Do nothing, just return.
+	// 	// 		console.log("inside");
+	// 	// 		return;
+	// 	// 	}
+	// 	// 	console.log("outside!");
+	// 	// 	targetElement = targetElement.parentNode;
+			
+	// 	// 	// Go up the DOM
+			
+	// 	// } while (targetElement);
+	
+	// 	// This is a click outside.
+
+
+	// 	if(targetElement){
+	// 		if (targetElement.isEqualNode(flyoutElement)) {
+	// 			// This is a click inside. Do nothing, just return.
+	// 			console.log("inside");
+	// 			return;
+	// 		}
+	// 		console.log("outside");
+
+	// 	}
+		
+	// });
+	var boolean = document.hidden;
+	document.addEventListener('visibilitychange', function(){
+		document.title = document.visibilityState;
+		// console.log(document.visibilityState);
+		console.log(document.hidden);
+		if(document.hidden === true){
+			console.log("user've switched another tab!");
+			countMouseLeaveL +=1;
+			alert("Dont leave the scope of exam!");
+			
+		}
+	});
+	
 	
 	window.onload = function () {
 			//change time here
@@ -274,13 +319,32 @@ $(document).ready(function(){
 			display = document.querySelector('#time');
 			startTimer(thirtyMinutes, display);
 			regconizedUserTestListening();
-			$( "#testReading" ).mouseleave(function() {
-				alert("Dont leave the scope of exam!");
-				countMouseLeaveL +=1;
-			});
+			// $( "#testReading" ).mouseleave(function() {
+			// 	alert("Dont leave the scope of exam!");
+			// 	countMouseLeaveL +=1;
+			// });
+
+
+			// $("#testReading").mouseleave(function () {
+			// 	$(this).mousedown(function () {
+			// 		console.log("OK Moved!");
+			// 		alert("Dont leave the scope of exam!");
+					
+			// 		// countMouseLeaveL +=1;
+			// 	});
+			// }).mouseup(function () {
+			// 	$(this).unbind('mousedown');
+			// }).mouseout(function () {
+			// 	$(this).unbind('mousemove');
+			// });
 			
 			
-		};
+		// });
+
+		
+		
+		
+	}
 
 
 

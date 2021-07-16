@@ -263,86 +263,27 @@ function regconizedUserTestReading() {
 
 
 
-
+var boolean = document.hidden;
+	document.addEventListener('visibilitychange', function(){
+		document.title = document.visibilityState;
+		// console.log(document.visibilityState);
+		console.log(document.hidden);
+		if(document.hidden === true){
+			console.log("user've switched another tab!");
+			countMouseLeaveR +=1;
+			alert("Dont leave the scope of Reading exam!");
+			
+		}
+	});
 window.onload = function () {
     console.log("load reading test");
 	
-    //change time here
-    //var thirtyMinutes = 0.2 * 30;
     startReadingClock();
     regconizedUserTestReading();
-	$( "#test" ).mouseleave(function() {
-		alert("You've just leaved the exam!");
-		countMouseLeaveR +=1;
-	});
+	
         
          
 };
-
-
-//
-//$(document).ready(function(){
-//
-//	
-//	
-//	$('#btndoAgain').click(function(){ 
-//		location.reload();
-//	});
-//	
-//	$('#btnResultReading').click(function(){
-//		
-//		//clear clock,stop countdown
-//	    clearInterval(timecheck);
-//		//tranfer information
-//	    
-//	    //remove btn XemdapAn, show btn lamlai
-//	    $('#btnResultReading').hide();
-//	    $('#btndoAgain').show();
-//		
-//		var answerArr = answerUser();
-//		var jsonAnswerUser = JSON.stringify(answerArr);
-//		
-//		var examId = $("#id_bai_exam").val();
-//		
-//		var url="http://localhost:8081/webtoeic/showResultReading/"+examId;
-//		if(window.XMLHttpRequest){
-//			xhttp = new XMLHttpRequest();
-//		}
-//		else{
-//			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-//		}
-//		
-//		xhttp.open("POST",url,true);
-//		
-//			xhttp.onreadystatechange = function(){
-//			if(xhttp.readyState == 4){
-//				
-//				var data = xhttp.responseText;
-//				document.getElementById("main").innerHTML = data;
-//			}
-//		}
-//		
-//		
-//		xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-//
-//		xhttp.send(jsonAnswerUser);
-//	});
-//	
-//	
-//});
-
-  
-    
-
-
-
-
-
-
-
-
-
-
 
 
 
